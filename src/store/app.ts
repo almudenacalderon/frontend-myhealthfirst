@@ -1,23 +1,20 @@
 // Utilities
 import { defineStore } from 'pinia'
 
-export const useAppStore = defineStore('tareas', {
+export const useAppStore = defineStore('auth', {
   state: () => ({ //es como el data
-   tareasRealizadas: '',
-   tareas: [],
-   listaTareas: [],
-   condicion: false,
-   month: 1,
+   idToken: null,
+   refreshToken: null,
+   status: "authenticating",
+   user: null,
   }),
 
   getters: { //es como el computed
-    getTareasRealizadas: (state) => state.tareasRealizadas,
+    
   },
 
   actions: { //es como method
 
-    almacenar(tareas:string) {
-        this.tareasRealizadas += " "+ tareas;
-    },
+    
   }
 });
