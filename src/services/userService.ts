@@ -1,6 +1,4 @@
 import api from "./api"
-import type { Register } from '../interfaces/Users/IRegister'
-import type { Login } from '../interfaces/Users/ILogin'
 
   export async function Registro(
     name: string,
@@ -20,7 +18,7 @@ import type { Login } from '../interfaces/Users/ILogin'
   export async function Loggeo(
     email: string,
     password: string
-  ): Promise<number> {
+  ): Promise<LoginResponse> {
     const { data } = await api.post("Login", {
         email,
         password,

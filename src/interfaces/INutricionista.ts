@@ -1,6 +1,8 @@
 export interface Nutricionista {
+    id: number;
     nombre: string;
-    phoneNumber: string;
+    phoneNumber?: string;
     email: string;
-    fechaNacimiento: Date;
+    fechaNacimiento?: Date;
+    role: string;
   }
