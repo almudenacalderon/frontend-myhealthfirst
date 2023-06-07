@@ -58,29 +58,28 @@
   <script setup lang="ts">
   import { ref } from 'vue';
   import { Registro } from '../../services/userService';
-  import { useAppStore } from '@/store/app';
+  import { userStore } from '@/store/app';
   import type { Register } from '../../interfaces/Users/IRegister'
   import Swal from "sweetalert2";
   
-  const store = useAppStore();
+  const store = userStore();
   const userRegistro = ref({} as Register);
   const passwordRepeat= ref('');
 
      const register = () => {
-
       Registro(
         userRegistro.value.name,
         userRegistro.value.emailAddress,
         userRegistro.value.password,
         userRegistro.value.role)
-
-        Swal.fire({
-          icon: "success",
-          title: "Registro correcto",
-          text: "Ya está registrado"
-        })
-
-      }
+      
+        
+        userRegistro.value.name = '';
+        userRegistro.value.emailAddress= '';
+        userRegistro.value.password= '';
+        userRegistro.value.role= '';
+      } 
+        
 
 </script>
   

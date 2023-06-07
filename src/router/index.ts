@@ -18,22 +18,54 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () =>
-        import("../views/auth/Login.vue"),
+          import("../views/auth/Login.vue"),
       },
       {
         path: "/register",
         name: "Register",
         component: () =>
-        import("../views/auth/Register.vue"),
+          import("../views/auth/Register.vue"),
       },
-      ]
+
+    ]
+
   },
-  
-];
+  {
+    path: "/pantallas",
+    name: "Pantalla",
+    component: () =>
+      import("../layouts/BasicLayout.vue"),
+    children: [
+      {
+        path: "/micuentaC",
+        name: "Cliente",
+        component: () =>
+          import("../views/ClienteView.vue"),
+      },
+      {
+        path: "/micuentaE",
+        name: "Entrenador",
+        component: () =>
+          import("../views/EntrenadorView.vue"),
+      },
+      {
+        path: "/micuentaN",
+        name: "Nutricionista",
+        component: () =>
+          import("../views/NutricionistaView.vue"),
+      },
+      {
+        path: "/404",
+        name: "Error",
+        component: () =>
+          import("../views/ErrorPageView.vue"),
+      },
+    ]
+  },
+]
+    const router = createRouter({
+      history: createWebHistory(process.env.BASE_URL),
+      routes,
+    });
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-export default router;
+    export default router;

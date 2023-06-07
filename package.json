@@ -24,7 +24,7 @@
     "sweetalert2": "^11.7.10",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0",
-    "vuetify": "^3.2.3",
+    "vuetify": "^3.3.2",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
