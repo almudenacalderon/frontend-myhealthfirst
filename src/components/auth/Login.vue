@@ -10,12 +10,15 @@
         Has introducido mal el email o la contraseña.
       </p>
       <input class="form-submit" type="submit" value="Login" />
-      <router-link :to="{ name: 'Register' }">¿No tienes cuentaa?</router-link>
+      <router-link :to="{ name: 'Register' }">¿No tienes cuenta?</router-link>
     </form>
   </div>
+  <div v-if="isLoading" class="spinner-container">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      </div>
 </template>
+    
   
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { userStore } from '@/store/app';
@@ -28,6 +31,7 @@ const router = useRouter();
 const store = userStore();
 const userLogin = ref({} as Login);
 let error = ref(false);
+let isLoading = false;
 
 async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
@@ -45,7 +49,7 @@ async function login() {
       const trainer = store.getEntrenadorEmail(userLogin.value.email);
       const nutricionista = store.getNutricionistaEmail(userLogin.value.email);
       let rol = "";
-
+      isLoading = true;
       if (cliente) {
         rol = cliente.role;
         store.setClienteSelecionado(cliente.nombre)
@@ -71,24 +75,25 @@ async function login() {
         default:
           router.push({ name: "Error" });
           break;
-      } 
+      };
     }
+
   } catch (error) {
-  error = true; // Establecer una variable de error para mostrar un mensaje al usuario
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'La contraseña o el correo no es correcto',
-      })
-  console.error("Error en el login:");
-  store.autenticado = false;
+    error = true;
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'La contraseña o el correo no es correcto',
+    })
+    console.error("Error en el login:");
+    store.autenticado = false;
   }
   userLogin.value.email = '';
   userLogin.value.password = '';
 }
 
 </script>
-
+  
 <style lang="scss" scoped>
 .login {
   padding: 2rem;
@@ -96,6 +101,7 @@ async function login() {
 
 .title {
   text-align: center;
+  color: white;
 }
 
 .form {
@@ -147,5 +153,11 @@ async function login() {
   &:hover {
     background: #0b9185;
   }
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>

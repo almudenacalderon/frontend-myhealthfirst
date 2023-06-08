@@ -18,13 +18,13 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () =>
-          import("../views/auth/Login.vue"),
+          import("../views/LoginView.vue"),
       },
       {
         path: "/register",
         name: "Register",
         component: () =>
-          import("../views/auth/Register.vue"),
+          import("../views/RegisterView.vue"),
       },
 
     ]
@@ -61,6 +61,12 @@ const routes = [
           import("../views/ErrorPageView.vue"),
       },
     ]
+  },
+  {
+    path: "/404",
+    name: "Error",
+    component: () =>
+      import("../views/ErrorPageView.vue"),
   },
 ]
     const router = createRouter({

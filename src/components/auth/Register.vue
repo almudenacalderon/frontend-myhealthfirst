@@ -89,6 +89,7 @@
   }
   .title {
     text-align: center;
+    color: white;
   }
   .form {
     margin: 3rem auto;
