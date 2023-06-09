@@ -4,7 +4,7 @@
         <v-img gradient="to top right, rgba(19,84,122,.2), rgba(128,208,199,.2)"></v-img>
      </template>
 
-     <template v-slot:prepend>
+      <template v-slot:prepend>
         <v-app-bar-nav-icon @click="colapsado = !colapsado"></v-app-bar-nav-icon>
      </template>
 
@@ -19,7 +19,6 @@
      <v-btn icon v-if="store.autenticado" @click="logout">
         <v-icon>mdi-logout</v-icon>
      </v-btn>
-
     
   </v-app-bar>
 

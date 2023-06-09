@@ -1,5 +1,5 @@
 {
-  "name": "pruebaRef",
+  "name": "MyHealthFirst",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -21,6 +21,7 @@
     "node-sass": "^8.0.0",
     "pinia": "^2.0.23",
     "roboto-fontface": "*",
+    "sass-loader": "^13.3.1",
     "sweetalert2": "^11.7.10",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0",

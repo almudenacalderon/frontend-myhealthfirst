@@ -8,8 +8,8 @@
           En FitChallenge apostamos por la salud, por ello ofrecemos fitness para todos
           cuando y donde sea, mediante el deporte o la alimentación. ¿Te atreves a cambiar tu vida?
         </p>
-         <router-link :to="{ name: 'Register'}">¿No tienes cuenta?</router-link>   
-         <router-link :to="{ name: 'Login'}">¿Ya tienes cuenta?</router-link>  
+         <router-link to="/register">¿No tienes cuenta?</router-link>   
+         <router-link to="/login">¿Ya tienes cuenta?</router-link>  
       </div>
     </div>
   </div>
