@@ -10,12 +10,9 @@
         Has introducido mal el email o la contraseña.
       </p>
       <input class="form-submit" type="submit" value="Login" />
-      <router-link :to="{ name: 'Register' }">¿No tienes cuenta?</router-link>
+      <router-link to="/register">¿No tienes cuenta?</router-link>
     </form>
   </div>
-  <div v-if="isLoading" class="spinner-container">
-        <v-progress-circular indeterminate color="primary"></v-progress-circular>
-      </div>
 </template>
     
   
@@ -64,16 +61,16 @@ async function login() {
       // Redireccionar al usuario a la pantalla correspondiente según su rol
       switch (rol) {
         case "Cliente":
-          router.push({ name: "Cliente" });
+          router.push('/micuentaC');
           break;
         case "Entrenador":
-          router.push({ name: "Entrenador" });
+          router.push('/micuentaE');
           break;
         case "Nutricionista":
-          router.push({ name: "Nutricionista" });
+          router.push('/micuentaN');
           break;
         default:
-          router.push({ name: "Error" });
+          router.push('/404');
           break;
       };
     }

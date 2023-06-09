@@ -49,7 +49,7 @@
           placeholder="Password"
         />
         <input class="form-submit" type="submit" value="Sign Up"> 
-         <router-link :to="{ name: 'Login'}">¿Ya tienes cuenta?</router-link>       
+         <router-link to="Login">¿Ya tienes cuenta?</router-link>       
       </form>
     </div>
 
@@ -78,6 +78,8 @@
         userRegistro.value.emailAddress= '';
         userRegistro.value.password= '';
         userRegistro.value.role= '';
+
+        Swal.clickConfirm
       } 
         
 

@@ -1,12 +1,12 @@
 <template>
     <v-navigation-drawer floating v-if="store.autenticado">
      <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/"></v-list-item>
+        <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/micuentaC"></v-list-item>
         <v-list-item
-           prepend-icon="mdi-calendar-edit"
-           title="Calendario"
-           value="Calendario"
-           to="/micalendario"
+           prepend-icon="mdi-account-details"
+           title="Perfil"
+           value="Perfil"
+           to="/miperfil"
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-weight-lifter"
@@ -15,47 +15,25 @@
            to="/misentrenos"
         ></v-list-item>
         <v-list-item
-           prepend-icon="mdi-file"
-           title="Nutrición"
-           value="Nutrición"
+           prepend-icon="mdi-silverware-variant"
+           title="Dietas"
+           value="Dietas"
            to="/misdietas"
         ></v-list-item>
-        <v-list-item
-        prepend-icon="mdi-account-details"
-        title="Mi cuenta"
-        value="Cuenta"
-        to="/micuenta">
-        </v-list-item>
-          <!-- Agregar el buscador -->
-        <v-text-field v-model="search" label="Buscar" solo clearable></v-text-field>
      </v-list>
   </v-navigation-drawer>
 
   <v-container >
     <v-row class="text-center">
-      <section
-        data-vc-full-width="true"
-        data-vc-full-width-init="true"
-        class="vc_row wpb_row vc_row-fluid vc_custom_1571902559965 vc_row-has-fill pofo-stretch-content pofo-stretch-row-container"
-        style="
-          position: relative;
-          left: -107.4px;
-          box-sizing: border-box;
-          width: 965px;
-          padding-left: 107.4px;
-          padding-right: 107.6px;
-        "
-      >
-        <div class="wpb_column vc_column_container vc_col-sm-12 col-xs-mobile-fullwidth">
-          <div class="vc_column-inner">
-            <div class="wpb_wrapper">
-              <h6
-                class="text-extra-dark-gray margin-20px-bottom font-weight-600 display-inline-block alt-font heading-style2 heading-3"
-                style="color: #262261"
-              >
-                Sobre el nombre «Kiteris»
+      <section>
+        <div>
+          <div>
+            <div>
+              <h6>
+               Encuentra a tu futuro entrenador o nutricionista
               </h6>
-              <div class="last-paragraph-no-margin">
+              <div>
+                <v-text-field v-model="search" label="Buscar" solo clearable></v-text-field>
                 <p>
                   En nuestras sesiones de búsqueda de nombre, tarea cada vez más difícil en este
                   mundo globalizado, queríamos un nombre conectado con alguna de nuestras claves
@@ -81,6 +59,52 @@
           </div>
         </div>
       </section>
+      <h2>Entrenadores</h2>
+      <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Numero</th>
+          <th>Fecha Nacimiento</th>
+          <th>Profesional</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="entrenador in store.getlistaEntrenadores" :key="entrenador.id">
+          <td>{{ entrenador.id }}</td>
+          <td>{{ entrenador.nombre }}</td>
+          <td>{{ entrenador.email }}</td>
+          <td>{{ entrenador.phoneNumber }}</td>
+          <td>{{ entrenador.fechaNacimiento }}</td>
+          <td>{{ entrenador.role }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Nutricionistas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Numero</th>
+          <th>Fecha Nacimiento</th>
+          <th>Profesional</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="entrenador in store.getlistaNutricionistas" :key="entrenador.id">
+          <td>{{ entrenador.id }}</td>
+          <td>{{ entrenador.nombre }}</td>
+          <td>{{ entrenador.email }}</td>
+          <td>{{ entrenador.phoneNumber }}</td>
+          <td>{{ entrenador.fechaNacimiento }}</td>
+          <td>{{ entrenador.role }}</td>
+        </tr>
+      </tbody>
+    </table>
     </v-row>
   </v-container>
 </template>
@@ -90,17 +114,31 @@
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 
+
 //const
 const store = userStore();
 const search= ref('');
+
 
 </script>
 
 <style lang="scss" scoped>
 
-.ajustar {
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  th { 
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  }
+  td {
+   padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 
-  max-width: 1000px;
-  font-size: 14px;
+  }
 }
 </style>
