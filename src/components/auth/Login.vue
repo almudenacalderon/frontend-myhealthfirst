@@ -50,6 +50,7 @@ async function login() {
       if (cliente) {
         rol = cliente.role;
         store.setClienteSelecionado(cliente.nombre)
+        store.setClienteSelect(cliente.id)
       } else if (trainer) {
         rol = trainer.role;
         store.setTrainerSelecionado(trainer.nombre)

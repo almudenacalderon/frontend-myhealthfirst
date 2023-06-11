@@ -6,7 +6,8 @@
            prepend-icon="mdi-account-details"
            title="Perfil"
            value="Perfil"
-           to="/miperfil"
+           :active="perfilActivo"
+           @click="editar()"
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-weight-lifter"
@@ -34,26 +35,7 @@
               </h6>
               <div>
                 <v-text-field v-model="search" label="Buscar" solo clearable></v-text-field>
-                <p>
-                  En nuestras sesiones de búsqueda de nombre, tarea cada vez más difícil en este
-                  mundo globalizado, queríamos un nombre conectado con alguna de nuestras claves
-                  filosóficas. Haciendo
-                  <em>research</em> en distintas fuentes (diccionarios zulús, suajili, mapuche, …),
-                  dimos con una palabra que nos pareció muy adecuada, además por proporcionar un
-                  referente cinéfilo reciente.
-                </p>
-                <p>
-                  <strong>James Cameron</strong>, el aclamado director de cine (Terminator, Abbys,
-                  …), encargó a un lingüista la creación de la lengua propia de los habitantes
-                  azules del planeta Pandora, el Na’vi, para su premiada película
-                  <strong>“Avatar”</strong>.
-                </p>
-                <p>
-                  <strong>“Kiteris”</strong> lo derivamos de la palabra “kite’e”, que en la lengua
-                  Na’vi significa “Servicio”, que enlaza perfectamente con nuestro lema
-                  <strong>“Pasión por el Servicio”</strong>. Valoramos también utilizar la doble “e”
-                  (“Kiteeris”), pero nos pareció poco práctico y confuso.
-                </p>
+               
               </div>
             </div>
           </div>
@@ -106,20 +88,33 @@
       </tbody>
     </table>
     </v-row>
+    <EditarCliente v-if="mostrarVentana" @onClose="cerrareditar()"></EditarCliente>
   </v-container>
+
 </template>
 
 <script setup lang="ts">
 //imports
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
-
+import EditarCliente from './EditarCliente.vue';
 
 //const
 const store = userStore();
 const search= ref('');
+const mostrarVentana = ref(false);
+const perfilActivo= ref(false)
+store.CargaDatosIniciales();
 
 
+const editar = () => {
+   mostrarVentana.value = true;
+   perfilActivo.value = true;
+};
+const cerrareditar = () => {
+   mostrarVentana.value = !mostrarVentana;
+   perfilActivo.value = false;
+}
 </script>
 
 <style lang="scss" scoped>

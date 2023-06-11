@@ -17,6 +17,7 @@ export const userStore = defineStore('auth', {
    clienteActual: '',
    trainerActual: '',
    nutriActual: '',
+   clienteSelecionado: 0,
   }),
 
   getters: { //es como el computed 
@@ -54,6 +55,8 @@ export const userStore = defineStore('auth', {
         return state.listaNutricionistas.find((c) => c.email == email)!;
       };
     },
+    GetclienteSelecionado: (state) =>
+      state.listaClientes.find((c) => c.id == state.clienteSelecionado)!,
   },
 
   actions: { //es como method
@@ -66,6 +69,9 @@ export const userStore = defineStore('auth', {
     setClienteSelecionado(nombre: string) {
       this.clienteActual = nombre;
     },
+    setClienteSelect(id: number) {
+      this.clienteSelecionado = id;
+    },
     setTrainerSelecionado(nombre: string) {
       this.trainerActual = nombre;
     },
@@ -76,7 +82,6 @@ export const userStore = defineStore('auth', {
     obtenerClientes() {
       GetClientes().then((data) => {
         this.listaClientes = data;
-        console.log(this.listaClientes)
       });
     },
     obtenerEntrenadores() {
@@ -89,6 +94,11 @@ export const userStore = defineStore('auth', {
         this.listaNutricionistas = data;
       
       });
+    },
+    CargaDatosIniciales() {
+      if (this.listaClientes.length == 0) this.obtenerClientes();
+      if (this.listaEntrenadores.length == 0) this.obtenerEntrenadores();
+      if (this.listaNutricionistas.length == 0) this.obtenerNutricionistas();
     },
     
   }

@@ -79,7 +79,7 @@
         userRegistro.value.password= '';
         userRegistro.value.role= '';
 
-        Swal.clickConfirm
+
       } 
         
 
