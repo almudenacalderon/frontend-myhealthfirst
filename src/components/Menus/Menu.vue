@@ -38,7 +38,7 @@ const cerrar = function () {
 }
 const logout = async () => {
   store.logoutUsuario();
-  router.push({ name: 'Home' });
+  router.push('/');
 };
 </script>
 

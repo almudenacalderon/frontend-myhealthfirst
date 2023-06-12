@@ -19,19 +19,10 @@ import Footer from './Footer/Footer.vue';
 import Contacto from './Contacto/Contacto.vue';
 import Pack from './Pack/Pack.vue';
 import Projects from './Projects/Projects.vue';
-import { onBeforeMount, ref } from 'vue';
 import { userStore } from '../../store/app';
 
 const store = userStore();
-
-onBeforeMount(async () => {
-      // Llamar a las acciones para obtener los datos
-      await Promise.all([
-    store.obtenerClientes(),
-    store.obtenerEntrenadores(),
-    store.obtenerNutricionistas(),
-  ]);
-    });
+store.CargaDatosIniciales();
 </script>
 
 <style lang="scss" scoped>

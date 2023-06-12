@@ -55,7 +55,6 @@
 //imports
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
-import * as Yup from "yup";
 import { Cliente } from '@/interfaces/ICliente';
 import Swal from 'sweetalert2';
 import { EditarCliente } from '@/services/clienteService';
@@ -74,16 +73,9 @@ const emit = defineEmits(['onClose']);
 
 const editar = async (nom: string) => {
 
-    const schemaForm = Yup.object().shape({
-        nombre: Yup.string().required('El nombre es requerido'),
-        email: Yup.string().required('El email es requerido'),
-        phoneNumber: Yup.string().required('El número de teléfono es requerido'),
-        peso: Yup.string().required('El peso es requerido'),
-        altura: Yup.string().required('La altura es requerida'),
-        fechaNacimiento: Yup.date().required('La fecha de nacimiento es requerida'),
-    });
+ 
     try {
-        await schemaForm.validate(clienteActual.value, { abortEarly: false });
+       
         if (clienteActual.value.email !== store.GetclienteSelecionado.email) {
             const duplicadoEmail = store.getlistaClientes.find(
                 (a) => a.email === clienteActual.value.email

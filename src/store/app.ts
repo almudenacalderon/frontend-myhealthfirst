@@ -96,9 +96,9 @@ export const userStore = defineStore('auth', {
       });
     },
     CargaDatosIniciales() {
-      if (this.listaClientes.length == 0) this.obtenerClientes();
-      if (this.listaEntrenadores.length == 0) this.obtenerEntrenadores();
-      if (this.listaNutricionistas.length == 0) this.obtenerNutricionistas();
+      this.obtenerClientes();
+      this.obtenerEntrenadores();
+      this.obtenerNutricionistas();
     },
     
   }

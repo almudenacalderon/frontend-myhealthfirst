@@ -10,7 +10,7 @@
         Has introducido mal el email o la contraseña.
       </p>
       <input class="form-submit" type="submit" value="Login" />
-      <router-link to="/register">¿No tienes cuenta?</router-link>
+      <router-link to="/register" class="router-link">¿No tienes cuenta?</router-link>
     </form>
   </div>
 </template>
@@ -28,7 +28,7 @@ const router = useRouter();
 const store = userStore();
 const userLogin = ref({} as Login);
 let error = ref(false);
-let isLoading = false;
+store.CargaDatosIniciales();
 
 async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
@@ -46,7 +46,7 @@ async function login() {
       const trainer = store.getEntrenadorEmail(userLogin.value.email);
       const nutricionista = store.getNutricionistaEmail(userLogin.value.email);
       let rol = "";
-      isLoading = true;
+  
       if (cliente) {
         rol = cliente.role;
         store.setClienteSelecionado(cliente.nombre)
@@ -58,6 +58,7 @@ async function login() {
         rol = nutricionista.role;
         store.setNutriSelecionado(nutricionista.nombre)
       }
+      console.log(rol)
 
       // Redireccionar al usuario a la pantalla correspondiente según su rol
       switch (rol) {
@@ -135,12 +136,19 @@ async function login() {
 
   &:focus {
     outline: 0;
-    border-color: #1ab188;
+    border-color: #c45e00;
   }
 }
+.router-link {
+  color: rgba(166, 165, 218, 0.9);
+  text-decoration: none;
+}
 
+.router-link:hover {
+  color: #996900;
+}
 .form-submit {
-  background: #1ab188;
+  background: #ff8c00;
   border: none;
   color: white;
   margin-top: 3rem;
@@ -149,13 +157,7 @@ async function login() {
   transition: background 0.2s;
 
   &:hover {
-    background: #0b9185;
+    background: #c45e00;
   }
-}
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 </style>
