@@ -2,12 +2,12 @@
   <div class="register">
     <h1 class="title">Sign Up</h1>
     <form class="form" @submit.prevent="register">
-      <label class="form-label" for="#name">Name:</label>
-      <input v-model="userRegistro.name" class="form-input" type="name" id="name" required placeholder="Nombre" 
+      <label class="form-label" for="#name">Nombre:</label>
+      <input v-model="userRegistro.name" class="form-input" type="name" id="name" placeholder="Nombre" 
       @input="validateName(userRegistro.name)"/>
       <span class="error">{{ errors.name }}</span>
       <label class="form-label" for="#email">Email:</label>
-      <input v-model="userRegistro.emailAddress" class="form-input" type="email" id="email" required
+      <input v-model="userRegistro.emailAddress" class="form-input" type="email" id="email"
         placeholder="Email" 
         @input="validateEmail(userRegistro.emailAddress)" 
         />

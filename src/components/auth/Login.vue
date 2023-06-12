@@ -3,7 +3,7 @@
     <h1 class="title">Login in the page</h1>
     <form class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
-      <input v-model="userLogin.email" class="form-input" type="email" id="email" required placeholder="Email" />
+      <input v-model="userLogin.email" class="form-input" type="email" id="email" placeholder="Email" />
       <label class="form-label" for="#password">Password:</label>
       <input v-model="userLogin.password" class="form-input" type="password" id="password" placeholder="Password" />
       <p v-if="error" class="error">
