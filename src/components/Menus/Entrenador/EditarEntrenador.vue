@@ -2,7 +2,7 @@
     <v-container>
         <ventana-emergente>
             <template v-slot:header>
-                <h3 class="text-center mt-10">Editar Perfil</h3>
+                <h3 class="text-center mt-5">Editar Perfil</h3>
             </template>
             <template v-slot:body>
                 <v-container>
@@ -32,10 +32,12 @@
             <template v-slot:footer>
                 <v-row class="row">
                     <v-col cols="6" class="text-right">
-                        <v-btn class="ma-2" variant="tonal" @click="editar(trainerActual.email)"> Añadir </v-btn>
+                        <v-btn class="ma-2" color="indigo" @click="editar(trainerActual.email)"> 
+                            <v-icon left>mdi-plus</v-icon>
+                            Añadir </v-btn>
                     </v-col>
                     <v-col cols="6" class="salir">
-                        <v-btn @click="emit('onClose')" color="error" class="ma-2"><v-icon
+                        <v-btn @click="emit('onClose')" color="red-accent-4" class="ma-2"><v-icon
                                 icon="mdi-exit-run" />Salir</v-btn>
                     </v-col>
                 </v-row>

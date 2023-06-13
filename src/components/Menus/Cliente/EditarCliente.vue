@@ -2,7 +2,7 @@
     <v-container>
         <ventana-emergente>
             <template v-slot:header>
-                <h3 class="text-center mt-10">Editar Perfil</h3>
+                <h3 class="text-center mt-5">Editar Perfil</h3>
             </template>
             <template v-slot:body>
                 <v-container>
@@ -67,7 +67,6 @@ const mostrarVentana = ref(false);
 const clienteActual = ref({} as Cliente);
 store.CargaDatosIniciales();
 clienteActual.value = store.GetclienteSelecionado;
-console.log(clienteActual.value.fechaNacimiento)
 const emit = defineEmits(['onClose']);
 
 const editar = async (nom: string) => {

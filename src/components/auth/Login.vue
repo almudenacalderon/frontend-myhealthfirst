@@ -11,6 +11,7 @@
       </p>
       <input class="form-submit" type="submit" value="Login" />
       <router-link to="/register" class="router-link">¿No tienes cuenta?</router-link>
+      <v-icon v-if="loading" icon="fa:fas fa-circle-notch fa-spin"></v-icon>
     </form>
   </div>
 </template>
@@ -29,6 +30,7 @@ const store = userStore();
 const userLogin = ref({} as Login);
 let error = ref(false);
 store.CargaDatosIniciales();
+let loading= ref(false);
 
 async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
@@ -41,7 +43,7 @@ async function login() {
     )
     if (response.result) {
       store.autenticado = true;
-
+      loading.value = true;
       const cliente = store.getClienteEmail(userLogin.value.email);
       const trainer = store.getEntrenadorEmail(userLogin.value.email);
       const nutricionista = store.getNutricionistaEmail(userLogin.value.email);
