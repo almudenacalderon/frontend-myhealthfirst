@@ -8,13 +8,11 @@
         <img class="img-fluid" :src="foto" />
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12 desc">
-        <h3>Fit Challenge</h3>
+        <h3>My Health First</h3>
         <p class="text-justify">
-          En FitChallenge apostamos por la salud, por ello ofrecemos fitness para todos
-          cuando y donde sea, mediante el deporte o la alimentación, tú eliges. Somos una pequeña 
-          empresa, creada por un grupo de estudiantes con el fin de mejorar y facilitar la vida
-          a aquellas personas que no encuentran el tiempo o el lugar indicado. Esta web será una joya
-          para aquellos que se preocupen por el deporte y la salud.
+          En My Health First como su propio nombre indica, apostamos por la salud, por ello ofrecemos fitness para todos
+          cuando y donde sea, mediante el deporte o la alimentación, tú eliges. Nosotros te garantizamos
+          los mejores profesionales, tu decides cuál encaja contigo y tus objetivos.
         </p>
       </div>
     </div>
@@ -33,7 +31,7 @@ import foto from '@/images/class2.png';
     position: relative;
   }
   .about h1 {
-    color: #32cad7;
+    color: #e35722;
     margin: 2em;
     font-weight: bold;
   }
@@ -45,10 +43,10 @@ import foto from '@/images/class2.png';
   }
   .about .desc {
     padding: 2em;
-    border-left: 4px solid #32cad7;
+    border-left: 4px solid #e35722;
   }
   .about .desc h3 {
-    color: #32cad7;
+    color: #e35722;
   }
   .about .desc p {
     line-height: 2;

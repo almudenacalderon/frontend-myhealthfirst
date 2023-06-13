@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="#ff8c00" :collapse="colapsado">
+  <v-app-bar color="#e35722" :collapse="colapsado" style="height: 9vh;">
 
       <template v-slot:prepend>
         <v-app-bar-nav-icon @click="colapsado = !colapsado"></v-app-bar-nav-icon>

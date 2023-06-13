@@ -180,12 +180,12 @@ const register = () => {
 
   &:focus {
     outline: 0;
-    border-color: #c45e00;
+    border-color: #e35722;
   }
 }
 
 .form-submit {
-  background: #ff8c00;
+  background: #e35722;
   border: none;
   color: white;
   margin-top: 1rem;
@@ -194,7 +194,7 @@ const register = () => {
   transition: background 0.2s;
 
   &:hover {
-    background: #c45e00;
+    background: #d03d07;
   }
 }
 .router-link {
@@ -203,7 +203,7 @@ const register = () => {
 }
 
 .router-link:hover {
-  color: #996900; 
+  color: #e35722; 
 }
 .error {
       color: red;

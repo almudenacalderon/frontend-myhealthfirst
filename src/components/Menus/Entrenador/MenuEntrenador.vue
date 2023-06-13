@@ -1,31 +1,35 @@
 <template>
    <v-navigation-drawer floating v-if="store.autenticado">
-      <v-list density="compact" nav>
-         <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/micuentaE"></v-list-item>
+      <v-list density="compact" nav class="custom-list">
+         <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/micuentaE"  class="custom-list-item"></v-list-item>
         <v-list-item
            prepend-icon="mdi-weight-lifter"
            title="Rutinas"
            value="Rutinas"
            to="/rutinas"
+           class="custom-list-item"
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-dumbbell"
            title="Ejercicios"
            value="Ejercicios"
            to="/exercise"
+           class="custom-list-item"
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-clipboard-account"
            title="Clientes"
            value="Clientes"
            to="/clientes"
+           class="custom-list-item"
         ></v-list-item>
         <v-list-item
         prepend-icon="mdi-account-details"
         title="Mi cuenta"
         value="Cuenta"
         :active="perfilActivo"
-         @click="editar()">
+         @click="editar()"
+         class="custom-list-item">
          </v-list-item>
       </v-list>
    </v-navigation-drawer>
@@ -84,7 +88,6 @@ const cerrareditar = () => {
    background-image: url(../../../images/menu-trainer.jpg);
    background-size: cover;
    height: 100vh;
-   /*100vh es 100% de la pantalla del usuario*/
    overflow: hidden;
    display: flex;
    align-items: center;
@@ -104,10 +107,19 @@ const cerrareditar = () => {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
       h1 {
-         color: #ff5500;
+         color: #e35722;
          font-weight: bolder;
          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       }
    }
+}
+.custom-list .custom-list-item {
+  border-bottom: none !important;
+  color: #000;
+  text-decoration: none;
+}
+  .custom-list-item:hover {
+  background-color: #e35722 !important;
+  color: #fff !important;
 }
 </style>

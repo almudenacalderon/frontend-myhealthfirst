@@ -5,7 +5,7 @@
                 <img :src=logo width=100 height=70 alt="logo" />
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
-                <a href="#team">Equipo</a>
+                <a href="#team">Profesionales</a>
                 <a href="#servicios">Servicios</a>
                 <a href="#contact">Contacto</a>
             </ul>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import logo from '@/images/logo.png';
+import logo from '@/images/apple-touch-icon.png';
 </script>
 
 <style lang="scss">
@@ -36,13 +36,16 @@ import logo from '@/images/logo.png';
   
   /* Seccion Header */
   header {
-    background-color: #fff;
+    background-color: #e35722;
+    height: 12vh;
+
   }
   header #lista a {
-    color: #32cad7;
+    color:black;
   }
   header #lista a:hover {
-    color: rgb(98, 100, 101);
+    color: white;
+    text-decoration: none;
   }
   header .container2 {
     display: flex;
@@ -51,6 +54,6 @@ import logo from '@/images/logo.png';
   }
   header .logo span {
     font-family: "Pattaya", sans-serif;
-    color: #32cad7;
+    color: #e35722;
     font-size: 30px;
   }</style>

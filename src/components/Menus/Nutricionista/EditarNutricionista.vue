@@ -17,7 +17,7 @@
                             </tr>
 
                             <tr>
-                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="date"
+                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="datetime-local"
                                         v-model="nutriActual.fechaNacimiento"></v-text-field>
                                 </td>
                                 <td class="col-md-6"><v-text-field label="Email" type="input" v-model="nutriActual.email"></v-text-field>

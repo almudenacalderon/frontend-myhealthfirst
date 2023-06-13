@@ -78,7 +78,7 @@
     cursor: pointer;
     margin: 5px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #32cad7;
+    background-color: #e35722;
     color: #000;
   }
   .pack .colorboton span {
@@ -106,7 +106,7 @@
     width: 60%;
     margin: auto;
     margin-top: 20px;
-    background-color: #32cad7;
+    background-color: #e35722;
     border: none;
     border-radius: 50px;
   }

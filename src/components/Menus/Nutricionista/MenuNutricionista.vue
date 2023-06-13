@@ -1,6 +1,6 @@
 <template>
    <v-navigation-drawer floating v-if="store.autenticado">
-      <v-list density="compact" nav>
+      <v-list density="compact" nav class="custom-list">
          <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/micuentaN"></v-list-item>
         <v-list-item
            prepend-icon="mdi-silverware-variant"
@@ -104,10 +104,19 @@ const cerrareditar = () => {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
       h1 {
-         color: #ff5500;
+         color: #e35722;
          font-weight: bolder;
          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       }
    }
+}
+.custom-list .custom-list-item {
+  border-bottom: none !important;
+  color: #000;
+  text-decoration: none;
+}
+  .custom-list-item:hover {
+  background-color: #e35722 !important;
+  color: #fff !important;
 }
 </style>
