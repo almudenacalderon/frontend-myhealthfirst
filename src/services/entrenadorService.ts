@@ -14,12 +14,14 @@ export async function EditarTrainer(
   id: number,
   nombre: string,
   email: string,
+  role: string,
   phoneNumber?: string,
   fechaNacimiento?: Date
 ): Promise<number> {
     const { data } = await api.put(`Trainer/${id}`, {
         nombre,
         email,
+        role,
         phoneNumber,
         fechaNacimiento,
     }); 

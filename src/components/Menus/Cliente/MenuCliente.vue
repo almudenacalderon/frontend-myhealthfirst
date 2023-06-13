@@ -13,13 +13,13 @@
            prepend-icon="mdi-weight-lifter"
            title="Entrenos"
            value="Entrenos"
-           to="/misentrenos"
+           @click="abrirRutinas()"
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-silverware-variant"
            title="Dietas"
            value="Dietas"
-           to="/misdietas"
+           @click="abrirDietas()"
         ></v-list-item>
      </v-list>
   </v-navigation-drawer>
@@ -89,6 +89,8 @@
     </table>
     </v-row>
     <EditarCliente v-if="mostrarVentana" @onClose="cerrareditar()"></EditarCliente>
+    <ClienteDietas v-if="clienteDietas" @onClose="cerrarDietas()"></ClienteDietas>
+    <ClienteRutinas v-if="clienteRutinas" @onClose="cerrarRutinas()"></ClienteRutinas>
   </v-container>
 
 </template>
@@ -98,6 +100,8 @@
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 import EditarCliente from './EditarCliente.vue';
+import ClienteDietas from './ClienteDietas.vue';
+import ClienteRutinas from './ClienteRutinas.vue';
 
 //const
 const store = userStore();
@@ -105,15 +109,31 @@ const search= ref('');
 const mostrarVentana = ref(false);
 const perfilActivo= ref(false)
 store.CargaDatosIniciales();
-
+const clienteDietas = ref(false);
+const clienteRutinas = ref(false);
 
 const editar = () => {
    mostrarVentana.value = true;
    perfilActivo.value = true;
 };
 const cerrareditar = () => {
-   mostrarVentana.value = !mostrarVentana;
-   perfilActivo.value = false;
+  mostrarVentana.value = !mostrarVentana;
+  perfilActivo.value = false;
+
+}
+const abrirDietas = () => {
+  clienteDietas.value = true;
+
+};
+const cerrarDietas = () => {
+  clienteDietas.value = !clienteRutinas;
+}
+const abrirRutinas = () => {
+  clienteRutinas.value = true;
+
+};
+const cerrarRutinas = () => {
+  clienteRutinas.value = !clienteRutinas;
 }
 </script>
 

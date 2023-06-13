@@ -14,12 +14,14 @@ export async function EditarNutricionist(
   id: number,
   nombre: string,
   email: string,
+  role: string,
   phoneNumber?: string,
   fechaNacimiento?: Date
 ): Promise<number> {
     const { data } = await api.put(`Nutricionist/${id}`, {
         nombre,
         email,
+        role,
         phoneNumber,
         fechaNacimiento,
     }); 

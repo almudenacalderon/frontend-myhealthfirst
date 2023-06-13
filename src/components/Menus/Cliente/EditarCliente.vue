@@ -24,11 +24,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><v-text-field label="Fecha Nacimiento" type="date"
-                                        v-model="clienteActual.fechaNacimiento"></v-text-field></td>
-                                <td><v-text-field label="Fecha Asignacion dieta" type="date"
+                                <td><v-text-field label="Fecha Nacimiento" type="datetime-local"
+                                       v-model="clienteActual.fechaNacimiento"></v-text-field></td>
+                                <td><v-text-field label="Fecha Asignacion dieta" type="datetime-local"
                                         v-model="clienteActual.fecha_asignacion_dieta"></v-text-field></td>
-                                <td><v-text-field label="Fecha Asignacion entreno" type="date"
+                                <td><v-text-field label="Fecha Asignacion entreno" type="datetime-local"
                                         v-model="clienteActual.fecha_asignacion_entrenamiento"></v-text-field></td>
                             </tr>
                         </thead>
@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 //imports
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { userStore } from '../../../store/app';
 import { Cliente } from '@/interfaces/ICliente';
 import Swal from 'sweetalert2';
@@ -67,9 +67,8 @@ const mostrarVentana = ref(false);
 const clienteActual = ref({} as Cliente);
 store.CargaDatosIniciales();
 clienteActual.value = store.GetclienteSelecionado;
-console.log(clienteActual.value)
+console.log(clienteActual.value.fechaNacimiento)
 const emit = defineEmits(['onClose']);
-
 
 const editar = async (nom: string) => {
 

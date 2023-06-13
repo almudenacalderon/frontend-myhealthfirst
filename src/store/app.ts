@@ -1,5 +1,4 @@
 // Utilities
-import { Login } from '@/interfaces/Users/ILogin';
 import { defineStore } from 'pinia'
 import { Cliente } from '@/interfaces/ICliente';
 import { Nutricionista } from '@/interfaces/INutricionista';
@@ -7,6 +6,12 @@ import { Entrenador } from '@/interfaces/IEntrenador';
 import { GetNutricionists } from '@/services/nutricionistaService';
 import { GetTrainers } from '@/services/entrenadorService';
 import { GetClientes } from '@/services/clienteService';
+import { GetDiets } from '@/services/dietasService';
+import { Diet } from '@/interfaces/IDiet';
+import { Training } from '@/interfaces/ITraining';
+import { GetTrainings } from '@/services/trainingService';
+import { GetExercises } from '@/services/exerciseService';
+import { Exercise } from '@/interfaces/IExercise';
 
 export const userStore = defineStore('auth', {
   state: () => ({ //es como el data
@@ -14,10 +19,15 @@ export const userStore = defineStore('auth', {
    listaClientes: [] as Cliente[],
    listaNutricionistas: [] as Nutricionista[],
    listaEntrenadores: [] as Entrenador[],
+   listaDietas: [] as Diet[],
+   listaRutinas: [] as Training[],
+   listaEjercicios: [] as Exercise[],
    clienteActual: '',
    trainerActual: '',
    nutriActual: '',
    clienteSelecionado: 0,
+   nutriSeleccionado:0,
+   trainerSeleccionado:0,
   }),
 
   getters: { //es como el computed 
@@ -25,6 +35,9 @@ export const userStore = defineStore('auth', {
     getlistaClientes: (state) => state.listaClientes,
     getlistaNutricionistas: (state) => state.listaNutricionistas,
     getlistaEntrenadores: (state) => state.listaEntrenadores,
+    getlistaDietas: (state) => state.listaDietas,
+    getlistaRutinas: (state) => state.listaRutinas,
+    getlistaEjercicios: (state) => state.listaEjercicios,
     getClienteNombre: (state) => {
       return (nombre: string) => {
         return state.listaClientes.find((c) => c.nombre == nombre)!;
@@ -57,6 +70,12 @@ export const userStore = defineStore('auth', {
     },
     GetclienteSelecionado: (state) =>
       state.listaClientes.find((c) => c.id == state.clienteSelecionado)!,
+    
+    GetnutriSelecionado: (state) =>
+      state.listaNutricionistas.find((n) => n.id == state.nutriSeleccionado)!,
+
+    GettrainerSelecionado: (state) =>
+      state.listaEntrenadores.find((e) => e.id == state.trainerSeleccionado)!
   },
 
   actions: { //es como method
@@ -75,8 +94,14 @@ export const userStore = defineStore('auth', {
     setTrainerSelecionado(nombre: string) {
       this.trainerActual = nombre;
     },
+    setTrainerSelect(id: number) {
+      this.trainerSeleccionado = id;
+    },
     setNutriSelecionado(nombre: string) {
       this.nutriActual = nombre;
+    },
+    setNutriSelect(id: number) {
+      this.nutriSeleccionado = id;
     },
    
     obtenerClientes() {
@@ -95,10 +120,28 @@ export const userStore = defineStore('auth', {
       
       });
     },
+    obtenerDietas() {
+      GetDiets().then((data) => {
+        this.listaDietas = data;
+      });
+    },
+    obtenerRutinas() {
+      GetTrainings().then((data) => {
+        this.listaRutinas = data;
+      });
+    },
+    obtenerEjercicios() {
+      GetExercises().then((data) => {
+        this.listaEjercicios = data;
+      });
+    },
     CargaDatosIniciales() {
       this.obtenerClientes();
       this.obtenerEntrenadores();
       this.obtenerNutricionistas();
+      this.obtenerDietas();
+      this.obtenerRutinas();
+      this.obtenerEjercicios();
     },
     
   }

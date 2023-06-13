@@ -1,3 +1,10 @@
+import { Meal } from "./IMeal";
+
 export interface Diet {
-    nombre?: string
+    id: number,
+    nombre: string,
+    meals: Meal [],
+    nutricionistId: number,
+    comentarios?: string,
+    clientId: number,
 }

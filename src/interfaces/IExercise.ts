@@ -1,5 +1,7 @@
 export interface Exercise {
-    nombre?: string,
+    id: number,
+    nombre: string,
     set: number,
-    repeticiones: number
+    repeticiones: number,
+    comentarios: string,
 }

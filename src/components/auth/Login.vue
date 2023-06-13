@@ -54,9 +54,11 @@ async function login() {
       } else if (trainer) {
         rol = trainer.role;
         store.setTrainerSelecionado(trainer.nombre)
+        store.setTrainerSelect(trainer.id)
       } else if (nutricionista) {
         rol = nutricionista.role;
         store.setNutriSelecionado(nutricionista.nombre)
+        store.setNutriSelect(nutricionista.id)
       }
       console.log(rol)
 
