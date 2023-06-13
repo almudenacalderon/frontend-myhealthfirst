@@ -35,7 +35,7 @@
     width: 100%;
     height: 100%;
     z-index: 100;
-    /* display: flex; */
+     display: flex; 
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
@@ -44,7 +44,7 @@
   }
   
   .modal-container {
-    width: 85em;
+    width: 102%;
     height: 100%;
     overflow:scroll;
     padding-right: 5%;
@@ -61,17 +61,17 @@
     visibility: visible;
   }
   .modal-content{
+    margin-top: 10px;
     height: 80vh;
-    height: 100%;
   }
   
   .modal-body{
-     border-radius: 0 0 3px 3px;
+     border-radius: 3px 3px 3px 3px;
      background-color: white;
   }
   .modal-header{
     background-color: lightgray;
-    border-radius: 0px 0px 3px 3px; 
+
   }
   
   </style>

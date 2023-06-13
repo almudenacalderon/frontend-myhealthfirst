@@ -3,14 +3,14 @@
     <h1 class="title">Login in the page</h1>
     <form class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
-      <input v-model="userLogin.email" class="form-input" type="email" id="email" required placeholder="Email" />
+      <input v-model="userLogin.email" class="form-input" type="email" id="email" placeholder="Email" />
       <label class="form-label" for="#password">Password:</label>
       <input v-model="userLogin.password" class="form-input" type="password" id="password" placeholder="Password" />
       <p v-if="error" class="error">
         Has introducido mal el email o la contraseña.
       </p>
       <input class="form-submit" type="submit" value="Login" />
-      <router-link to="/register">¿No tienes cuenta?</router-link>
+      <router-link to="/register" class="router-link">¿No tienes cuenta?</router-link>
     </form>
   </div>
 </template>
@@ -28,7 +28,7 @@ const router = useRouter();
 const store = userStore();
 const userLogin = ref({} as Login);
 let error = ref(false);
-let isLoading = false;
+store.CargaDatosIniciales();
 
 async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
@@ -46,17 +46,21 @@ async function login() {
       const trainer = store.getEntrenadorEmail(userLogin.value.email);
       const nutricionista = store.getNutricionistaEmail(userLogin.value.email);
       let rol = "";
-      isLoading = true;
+  
       if (cliente) {
         rol = cliente.role;
         store.setClienteSelecionado(cliente.nombre)
+        store.setClienteSelect(cliente.id)
       } else if (trainer) {
         rol = trainer.role;
         store.setTrainerSelecionado(trainer.nombre)
+        store.setTrainerSelect(trainer.id)
       } else if (nutricionista) {
         rol = nutricionista.role;
         store.setNutriSelecionado(nutricionista.nombre)
+        store.setNutriSelect(nutricionista.id)
       }
+      console.log(rol)
 
       // Redireccionar al usuario a la pantalla correspondiente según su rol
       switch (rol) {
@@ -134,12 +138,19 @@ async function login() {
 
   &:focus {
     outline: 0;
-    border-color: #1ab188;
+    border-color: #c45e00;
   }
 }
+.router-link {
+  color: rgba(166, 165, 218, 0.9);
+  text-decoration: none;
+}
 
+.router-link:hover {
+  color: #996900;
+}
 .form-submit {
-  background: #1ab188;
+  background: #ff8c00;
   border: none;
   color: white;
   margin-top: 3rem;
@@ -148,13 +159,7 @@ async function login() {
   transition: background 0.2s;
 
   &:hover {
-    background: #0b9185;
+    background: #c45e00;
   }
-}
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 </style>

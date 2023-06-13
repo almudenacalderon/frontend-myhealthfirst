@@ -1,4 +1,5 @@
 export interface Meal {
+    id: number,
     nombre?: string,
     desayuno?: string
     comida?: string
@@ -9,4 +10,5 @@ export interface Meal {
     post_entreno?: string
     pre_entreno?: string
     dietId: number
+    comentarios?: string
 }

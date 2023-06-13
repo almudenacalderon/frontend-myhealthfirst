@@ -1,8 +1,5 @@
 <template>
-  <v-app-bar color="blue" :collapse="colapsado">
-     <template v-slot:image>
-        <v-img gradient="to top right, rgba(19,84,122,.2), rgba(128,208,199,.2)"></v-img>
-     </template>
+  <v-app-bar color="#ff8c00" :collapse="colapsado">
 
       <template v-slot:prepend>
         <v-app-bar-nav-icon @click="colapsado = !colapsado"></v-app-bar-nav-icon>
@@ -41,7 +38,7 @@ const cerrar = function () {
 }
 const logout = async () => {
   store.logoutUsuario();
-  router.push({ name: 'Home' });
+  router.push('/');
 };
 </script>
 

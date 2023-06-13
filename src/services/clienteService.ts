@@ -14,6 +14,7 @@ export async function EditarCliente(
   id: number,
   nombre: string,
   email: string,
+  role: string,
   phoneNumber?: string,
   peso?: number,
   altura?: number,
@@ -21,7 +22,7 @@ export async function EditarCliente(
   fecha_asignacion_dieta?: Date,
   fecha_asignacion_entrenamiento?: Date,
   trainerId?: number,
-  nutricionistId?: number
+  nutricionistId?: number,
 ): Promise<number> {
     const { data } = await api.put(`Client/${id}`, {
         nombre,
@@ -33,7 +34,8 @@ export async function EditarCliente(
         fecha_asignacion_dieta,
         fecha_asignacion_entrenamiento,
         trainerId,
-        nutricionistId
+        nutricionistId,
+        role
     }); 
     return data;
 }
