@@ -75,11 +75,6 @@ const routes = [
         name: "Dieta",
         component: () => import("../views/DietasView.vue"),
       },
-      {
-        path: "/alimentacion",
-        name: "Alimentacion",
-        component: () => import("../views/MealsView.vue"),
-      },
     ]
   },
   {
