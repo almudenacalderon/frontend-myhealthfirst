@@ -7,41 +7,6 @@
  </template>
  
  <script setup lang="ts">
- //imports
- import { ref } from 'vue';
- import { userStore } from '../../../store/app';
-
- import RutinasEjercicios from './RutinasEjercicios.vue';
-
- //const
- const store = userStore();
- const mostrarVentana3 = ref(false);
- const perfilActivo = ref(false)
- const entrenadorEjer = ref(false);
- const entrenadorRutinas = ref(false);
- 
- const editar = () => {
-    mostrarVentana3.value = true;
-    perfilActivo.value = true;
- };
- const cerrareditar = () => {
-    mostrarVentana3.value = !mostrarVentana3;
-    perfilActivo.value = false;
- }
- const openRutinas = () => {
-    entrenadorRutinas.value = true;
- };
- const closeRutinas = () => {
-    entrenadorRutinas.value = !entrenadorRutinas;
- }
- const openEjercicios = () => {
-    entrenadorEjer.value = true;
- 
- };
- const closeEjercicios = () => {
-    entrenadorEjer.value = !entrenadorEjer;
- }
- 
  </script>
  
  <style lang="scss" scoped>

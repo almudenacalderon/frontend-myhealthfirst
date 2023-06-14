@@ -25,7 +25,7 @@
                             </tr>
                             <tr>
                                 <td><v-text-field label="Fecha Nacimiento" type="datetime-local"
-                                       v-model="clienteActual.fechaNacimiento"></v-text-field></td>
+                                        v-model="clienteActual.fechaNacimiento"></v-text-field></td>
                                 <td><v-text-field label="Fecha Asignacion dieta" type="datetime-local"
                                         v-model="clienteActual.fecha_asignacion_dieta"></v-text-field></td>
                                 <td><v-text-field label="Fecha Asignacion entreno" type="datetime-local"
@@ -71,9 +71,9 @@ const emit = defineEmits(['onClose']);
 
 const editar = async (nom: string) => {
 
- 
+
     try {
-       
+
         if (clienteActual.value.email !== store.GetclienteSelecionado.email) {
             const duplicadoEmail = store.getlistaClientes.find(
                 (a) => a.email === clienteActual.value.email
@@ -102,17 +102,27 @@ const editar = async (nom: string) => {
                 clienteActual.value.trainerId,
                 clienteActual.value.nutricionistId);
 
+            Swal.fire({
+                icon: "success",
+                title: "Cambios aplicados",
+                text: "Tu perfil ya está actualizado",
+            });
+
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Error al cambiar tus datos",
+                text: "Ocurrió un error. Por favor, intenta nuevamente.",
+            });
         }
     } catch (error) {
-        console.log("Problemas en el formulario")
+        Swal.fire({
+                icon: "error",
+                title: "Error en el formulario",
+            });
     }
-    Swal.fire({
-        icon: "success",
-        title: "Cambios aplicados",
-        text: "Tu perfil ya está actualizado",
-    });
+
 }
 
 

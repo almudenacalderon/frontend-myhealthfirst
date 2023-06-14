@@ -62,8 +62,13 @@ const routes = [
       },
       {
         path: "/misrutinas",
-        name: "RutinasEjercicios",
-        component: () => import("../views/RutinasEjerciciosView.vue"),
+        name: "Rutinas",
+        component: () => import("../views/RutinasView.vue"),
+      },
+      {
+        path: "/ejercicios",
+        name: "Ejercicios",
+        component: () => import("../views/EjerciciosView.vue"),
       },
     ]
   },

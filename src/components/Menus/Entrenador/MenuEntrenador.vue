@@ -4,8 +4,8 @@
          <v-list-item prepend-icon="mdi-home" title="Home" value="home" to="/micuentaE"  class="custom-list-item"></v-list-item>
         <v-list-item
            prepend-icon="mdi-weight-lifter"
-           title="Rutinas Ejercicios"
-           value="RutinasEjercicios"
+           title="Rutinas"
+           value="Rutinas"
            to="/misrutinas"
            class="custom-list-item"
         ></v-list-item>
@@ -13,7 +13,7 @@
            prepend-icon="mdi-dumbbell"
            title="Ejercicios"
            value="Ejercicios"
-           @click="openEjercicios()"
+           to="/ejercicios"
            class="custom-list-item"
         ></v-list-item>
         <v-list-item
@@ -35,13 +35,12 @@
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 import EditarEntrenador from './EditarEntrenador.vue';
-import RutinasEjercicios from './RutinasEjercicios.vue';
+
 //const
 const store = userStore();
 const mostrarVentana3 = ref(false);
 const perfilActivo = ref(false)
-const entrenadorEjer = ref(false);
-const entrenadorRutinas = ref(false);
+
 
 const editar = () => {
    mostrarVentana3.value = true;
@@ -50,19 +49,6 @@ const editar = () => {
 const cerrareditar = () => {
    mostrarVentana3.value = !mostrarVentana3;
    perfilActivo.value = false;
-}
-const openRutinas = () => {
-   entrenadorRutinas.value = true;
-};
-const closeRutinas = () => {
-   entrenadorRutinas.value = !entrenadorRutinas;
-}
-const openEjercicios = () => {
-   entrenadorEjer.value = true;
-
-};
-const closeEjercicios = () => {
-   entrenadorEjer.value = !entrenadorEjer;
 }
 
 </script>

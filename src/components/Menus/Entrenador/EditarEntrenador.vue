@@ -2,11 +2,11 @@
     <v-container>
         <ventana-emergente>
             <template v-slot:header>
-                <h3 class="text-center mt-5">Editar Perfil</h3>
+                <h3 class="text-center mt-8 titulo">Editar Perfil</h3>
             </template>
             <template v-slot:body>
                 <v-container>
-                    <v-table>
+                    <v-table style="padding-top: 30px;">
                         <thead>
                             <v-dialog v-model="mostrarVentana3"></v-dialog>
                             <tr class="col-md-3 offset-md-3">
@@ -54,14 +54,12 @@ import { Entrenador } from '@/interfaces/IEntrenador';
 import Swal from 'sweetalert2';
 import { EditarTrainer } from '@/services/entrenadorService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
-import moment from 'moment';
 
 const store = userStore();
 const mostrarVentana3 = ref(false);
 const trainerActual = ref({} as Entrenador);
 store.CargaDatosIniciales();
 trainerActual.value = store.GettrainerSelecionado;
-console.log(trainerActual.value)
 const emit = defineEmits(['onClose']);
 
 
@@ -69,8 +67,8 @@ const editar = async (nom: string) => {
 
     try {
 
-        if (trainerActual.value.email !== store.GetnutriSelecionado.email) {
-            const duplicadoEmail = store.getlistaNutricionistas.find(
+        if (trainerActual.value.email !== store.GettrainerSelecionado.email) {
+            const duplicadoEmail = store.getlistaEntrenadores.find(
                 (a) => a.email === trainerActual.value.email
             );
             if (duplicadoEmail) {
@@ -107,12 +105,10 @@ const editar = async (nom: string) => {
 </script>
 
 <style scoped>
-h3 {
-    padding: 15px;
-}
 
 .row {
     align-items: center;
+    padding-bottom: 80px;
 }
 
 .text-right {
@@ -124,9 +120,7 @@ h3 {
     display: flex;
     flex-direction: column;
 }
-
-.error {
-    border-color: #faa;
-    background-color: #ffeded;
+.titulo {
+  padding-left: 50px;
 }
 </style>
