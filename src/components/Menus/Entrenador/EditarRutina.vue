@@ -78,14 +78,30 @@ import { EditarTraining } from "@/services/trainingService";
       errorSnackbar.value = true;
       return;
     }
+     // Comprobar si el cliente ha seleccionado un ejercicio con una propiedad 'nombre'
+  const hasNombreProperty = rutinaActual.value.exercises.some((exercise) => {
+    return exercise.hasOwnProperty('nombre');
+  });
+
+  if (hasNombreProperty) {
+    // El cliente ha seleccionado un ejercicio con la propiedad 'nombre'
+    Swal.fire({
+        icon: "error",
+        title: "Error al editar la rutina",
+        text: "Por favor, seleccione otro ejercicio o vuelva a seleccionar el mismo.",
+      });
+  
+    return;
+  }
     editaRutina();
   };
   
   const editaRutina = async () => {
     const clientId = Number(rutinaActual.value.clientId);
     try {
+
       await EditarTraining(
-        rutinaActual.value.id, // Pasar el ID de la rutina a editar
+        rutinaActual.value.id, 
         clientId,
         rutinaActual.value.exercises,
         rutinaActual.value.nombre,
@@ -96,6 +112,7 @@ import { EditarTraining } from "@/services/trainingService";
         title: "Rutina editada",
         text: "Los cambios han sido guardados correctamente.",
       });
+      store.obtenerRutinas();
       // Realizar las acciones adicionales necesarias después de editar la rutina
     } catch (error) {
       console.log(error);
