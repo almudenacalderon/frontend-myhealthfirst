@@ -70,6 +70,16 @@ const routes = [
         name: "Ejercicios",
         component: () => import("../views/EjerciciosView.vue"),
       },
+      {
+        path: "/dietas",
+        name: "Dieta",
+        component: () => import("../views/DietasView.vue"),
+      },
+      {
+        path: "/alimentacion",
+        name: "Alimentacion",
+        component: () => import("../views/MealsView.vue"),
+      },
     ]
   },
   {

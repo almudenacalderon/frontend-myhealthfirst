@@ -134,7 +134,12 @@ export const userStore = defineStore('auth', {
     setRutinaSelect(id: number) {
       this.rutinaSeleccionado = id;
     },
-   
+    setDietaSelect(id: number) {
+      this.dietaSeleccionada = id;
+    },
+    setMealSelect(id: number) {
+      this.mealSeleccionada = id;
+    },
     obtenerClientes() {
       GetClientes().then((data) => {
         this.listaClientes = data;

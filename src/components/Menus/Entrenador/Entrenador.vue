@@ -10,25 +10,6 @@
  </script>
  
  <style lang="scss" scoped>
- .table {
-    width: 100%;
-    border-collapse: collapse;
- 
-    th {
-       padding: 10px;
-       text-align: left;
-       border-bottom: 1px solid #ddd;
-       background-color: #f2f2f2;
-       font-weight: bold;
-    }
- 
-    td {
-       padding: 10px;
-       text-align: left;
-       border-bottom: 1px solid #ddd;
-    }
- }
- 
  .menu-trainer {
     background-image: url(../../../images/menu-trainer.jpg);
     background-size: cover;

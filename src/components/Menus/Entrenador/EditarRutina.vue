@@ -84,7 +84,7 @@ import { EditarTraining } from "@/services/trainingService";
   });
 
   if (hasNombreProperty) {
-    // El cliente ha seleccionado un ejercicio con la propiedad 'nombre'
+
     Swal.fire({
         icon: "error",
         title: "Error al editar la rutina",

@@ -52,7 +52,6 @@ import { Nutricionista } from '@/interfaces/INutricionista';
 import Swal from 'sweetalert2';
 import { EditarNutricionist } from '@/services/nutricionistaService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
-import moment from 'moment';
 
 const store = userStore();
 const mostrarVentana2 = ref(false);
