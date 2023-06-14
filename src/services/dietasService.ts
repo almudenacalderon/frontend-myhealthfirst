@@ -14,13 +14,13 @@ export async function DietPost(
     clientId: number,
     nutricionistId: number,
     nombre: string,
+    comentarios?: string,
   ): Promise<number> {
-    const { data } = await api.post("Diet",  {
+    const { data } = await api.post(`Diet/${nutricionistId}`,  {
         clientId,
-        nutricionistId,
         nombre,
+        comentarios
     });
-    console.log(data)
     return data;
   }
 
@@ -28,10 +28,12 @@ export async function EditarDieta(
   clientId: number,
   id: number,
   nombre: string,
+  comentarios?: string,
 ): Promise<number> {
     const { data } = await api.put(`Diet/${id}`, {
         clientId,
         nombre,
+        comentarios
     }); 
     return data;
 }

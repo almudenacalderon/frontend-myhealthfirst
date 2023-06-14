@@ -1,5 +1,5 @@
 <template>
-    <Meals/>
+ 
     
 </template>
 

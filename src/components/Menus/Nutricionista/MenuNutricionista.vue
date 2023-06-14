@@ -11,9 +11,9 @@
         ></v-list-item>
         <v-list-item
            prepend-icon="mdi-food-fork-drink"
-           title="Alimentacion diaria"
+           title="Crear alimentacion diaria"
            value="Alimentacion"
-           to="/alimentacion"
+           @click="añadirMeals()"
            class="custom-list-item"
         ></v-list-item>
         <v-list-item
@@ -28,6 +28,7 @@
    </v-navigation-drawer>
    
    <EditarNutricionista v-if="mostrarVentana2" @onClose="cerrareditar()"></EditarNutricionista>
+   <AñadirMeal v-if="nutriMeals" @onClose="closeAñadirMeals()"></AñadirMeal>
 </template>
 
 <script setup lang="ts">
@@ -35,11 +36,12 @@
 import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 import EditarNutricionista from './EditarNutricionista.vue';
-
+import AñadirMeal from './AñadirMeal.vue';
 //const
 const store = userStore();
 const mostrarVentana2 = ref(false);
-const perfilActivo = ref(false)
+const perfilActivo = ref(false);
+const nutriMeals = ref(false);
 
 const editar = () => {
    mostrarVentana2.value = true;
@@ -49,6 +51,17 @@ const cerrareditar = () => {
    mostrarVentana2.value = !mostrarVentana2;
    perfilActivo.value = false;
 }
+
+const añadirMeals = () => {
+    nutriMeals.value = true;
+};
+
+const closeAñadirMeals = () => {
+    nutriMeals.value = false;
+    store.obtenerMeals();
+    store.obtenerDietas();
+};
+
 </script>
 
 <style lang="scss" scoped>

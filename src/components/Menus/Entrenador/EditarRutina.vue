@@ -72,6 +72,7 @@ import { EditarTraining } from "@/services/trainingService";
   rutinaActual.value = store.GetRutinaSelecionado;
   const errorSnackbar = ref(false);
   const listaClientes = store.getlistaClientes.filter((cliente) => cliente.trainerId === entrenadorActual.value.id);
+  const emit = defineEmits(['onClose']);
   
   const validarCamposYGuardar = () => {
     if (!rutinaActual.value.nombre || rutinaActual.value.exercises.length === 0 || !rutinaActual.value.comentarios || !rutinaActual.value.clientId) {
@@ -98,6 +99,15 @@ import { EditarTraining } from "@/services/trainingService";
   
   const editaRutina = async () => {
     const clientId = Number(rutinaActual.value.clientId);
+    Swal.fire({
+    icon: "warning",
+    title: "¿Estás seguro?",
+    text: "Esta acción guardará los cambios en la rutina.",
+    showCancelButton: true,
+    confirmButtonText: "Sí, guardar",
+    cancelButtonText: "Cancelar",
+    showLoaderOnConfirm: true,
+    preConfirm: async () => {
     try {
 
       await EditarTraining(
@@ -107,24 +117,30 @@ import { EditarTraining } from "@/services/trainingService";
         rutinaActual.value.nombre,
         rutinaActual.value.comentarios
       );
+      return true;
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Error al editar la rutina",
+          text: "Ocurrió un error al editar la rutina. Por favor, intenta nuevamente.",
+        });
+        return false;
+      }
+    },
+  }).then((result) => {
+    if (result.value) {
       Swal.fire({
         icon: "success",
         title: "Rutina editada",
         text: "Los cambios han sido guardados correctamente.",
       });
-      store.obtenerRutinas();
-      // Realizar las acciones adicionales necesarias después de editar la rutina
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Error al editar la rutina",
-        text: "Ocurrió un error al editar la rutina. Por favor, intenta nuevamente.",
-      });
     }
-  };
-  
-  const emit = defineEmits(['onClose']);
+    store.obtenerRutinas();
+  });
+ 
+};
+ 
   </script>
   
   <style scoped lang="scss">

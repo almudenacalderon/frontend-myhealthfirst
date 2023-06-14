@@ -42,6 +42,7 @@ export async function MealPost(
 
 export async function EditarMeal(
     id: number,
+    dietId: number,
     nombre?: string,
     desayuno?: string,
     comida?: string,
@@ -54,6 +55,7 @@ export async function EditarMeal(
     comentarios?: string,
 ): Promise<number> {
     const { data } = await api.put(`Meal/${id}`, {
+        dietId,
         nombre,
         desayuno,
         comida,

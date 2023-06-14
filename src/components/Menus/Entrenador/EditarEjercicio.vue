@@ -102,6 +102,7 @@
         });
       }
     });
+    store.obtenerEjercicios();
   };
   </script>
   <style scoped>
