@@ -64,9 +64,26 @@ nutriActual.value = store.GetnutriSelecionado;
 console.log(nutriActual.value)
 const emit = defineEmits(['onClose']);
 
+const validarCamposYGuardar = () => {
+    if (
+        !nutriActual.value.nombre ||
+        !nutriActual.value.email ||
+        !nutriActual.value.phoneNumber ||
+        !nutriActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
 
 const editar = async (nom: string) => {
         try {
+            validarCamposYGuardar();
+
             await ChangeEmail(
                 nutriActual.value.email,
                 nutriActual.value.userId

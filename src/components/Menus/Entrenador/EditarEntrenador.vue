@@ -65,10 +65,27 @@ store.CargaDatosIniciales();
 trainerActual.value = store.GettrainerSelecionado;
 const emit = defineEmits(['onClose']);
 
+const validarCamposYGuardar = () => {
+    if (
+        !trainerActual.value.nombre ||
+        !trainerActual.value.email ||
+        !trainerActual.value.phoneNumber ||
+        !trainerActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
 
 const editar = async (nom: string) => {
-
+    
         try {
+            validarCamposYGuardar();
+            
             await ChangeEmail(
                 trainerActual.value.email,
                 trainerActual.value.userId

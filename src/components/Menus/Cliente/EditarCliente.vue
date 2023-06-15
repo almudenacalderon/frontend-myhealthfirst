@@ -70,8 +70,34 @@ store.CargaDatosIniciales();
 clienteActual.value = store.GetclienteSelecionado;
 const emit = defineEmits(['onClose']);
 
-const editar = async (nom: string) => {         
+const validarCamposYGuardar = () => {
+    if (
+        !clienteActual.value.nombre ||
+        !clienteActual.value.email ||
+        !clienteActual.value.phoneNumber ||
+        !clienteActual.value.peso ||
+        !clienteActual.value.altura ||
+        !clienteActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
+
+const editar = async (nom: string) => {      
+    
         try {
+            validarCamposYGuardar();
+
+            await ChangeEmail(
+                    clienteActual.value.email,
+                    clienteActual.value.userId
+                );
+
             await EditarCliente(
                 clienteActual.value.id,
                 clienteActual.value.nombre,
@@ -85,11 +111,6 @@ const editar = async (nom: string) => {
                 clienteActual.value.fecha_asignacion_entrenamiento,
                 clienteActual.value.trainerId,
                 clienteActual.value.nutricionistId);
-
-                await ChangeEmail(
-                    clienteActual.value.email,
-                    clienteActual.value.userId
-                );
 
         } catch (error) {
             Swal.fire({
