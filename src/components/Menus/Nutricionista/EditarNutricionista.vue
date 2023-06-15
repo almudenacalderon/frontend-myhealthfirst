@@ -66,40 +66,26 @@ const emit = defineEmits(['onClose']);
 
 
 const editar = async (nom: string) => {
-
-    try {
-
-        if (nutriActual.value.email !== store.GetnutriSelecionado.email) {
-            const duplicadoEmail = store.getlistaNutricionistas.find(
-                (a) => a.email === nutriActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro nutricionista.",
-                });
-            }
-        }
         try {
+            await ChangeEmail(
+                nutriActual.value.email,
+                nutriActual.value.userId
+            );
             await EditarNutricionist(
                 nutriActual.value.id,
                 nutriActual.value.nombre,
                 nutriActual.value.email,
                 nutriActual.value.role,
                 nutriActual.value.phoneNumber,
-                nutriActual.value.fechaNacimiento);
-
-            await ChangeEmail(
-                nutriActual.value.email,
-                nutriActual.value.userId
-            );
+                nutriActual.value.fechaNacimiento);    
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso por otro nutricionista.",
+                });
         }
-    } catch (error) {
-        console.log("Problemas en el formulario")
-    }
+  
     Swal.fire({
         icon: "success",
         title: "Cambios aplicados",

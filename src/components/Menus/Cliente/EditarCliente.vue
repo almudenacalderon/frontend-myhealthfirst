@@ -70,21 +70,7 @@ store.CargaDatosIniciales();
 clienteActual.value = store.GetclienteSelecionado;
 const emit = defineEmits(['onClose']);
 
-const editar = async (nom: string) => {
-
-
-    try {
-            const duplicadoEmail = store.getlistaClientes.find(
-                (a) => a.email === clienteActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro cliente.",
-                });
-                return;
-            } 
+const editar = async (nom: string) => {         
         try {
             await EditarCliente(
                 clienteActual.value.id,
@@ -105,29 +91,19 @@ const editar = async (nom: string) => {
                     clienteActual.value.userId
                 );
 
+        } catch (error) {
             Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso.",
+                });
+        }
+        Swal.fire({
                 icon: "success",
                 title: "Cambios aplicados",
                 text: "Tu perfil ya está actualizado",
             });
-
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                title: "Error al cambiar tus datos",
-                text: "Ocurrió un error. Por favor, intenta nuevamente.",
-            });
-        }
-    } catch (error) {
-        Swal.fire({
-                icon: "error",
-                title: "Error en el formulario",
-            });
     }
-
-}
-
 
 </script>
 

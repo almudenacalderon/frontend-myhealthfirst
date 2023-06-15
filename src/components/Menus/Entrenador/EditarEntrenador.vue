@@ -68,21 +68,11 @@ const emit = defineEmits(['onClose']);
 
 const editar = async (nom: string) => {
 
-    try {
-
-        if (trainerActual.value.email !== store.GettrainerSelecionado.email) {
-            const duplicadoEmail = store.getlistaEntrenadores.find(
-                (a) => a.email === trainerActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro nutricionista.",
-                });
-            }
-        }
         try {
+            await ChangeEmail(
+                trainerActual.value.email,
+                trainerActual.value.userId
+            );
             await EditarTrainer(
                 trainerActual.value.id,
                 trainerActual.value.nombre,
@@ -90,18 +80,13 @@ const editar = async (nom: string) => {
                 trainerActual.value.role,
                 trainerActual.value.phoneNumber,
                 trainerActual.value.fechaNacimiento);
-                
-            await ChangeEmail(
-                trainerActual.value.email,
-                trainerActual.value.userId
-            );
-
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso.",
+                });
         }
-    } catch (error) {
-        console.log("Problemas en el formulario")
-    }
     Swal.fire({
         icon: "success",
         title: "Cambios aplicados",
