@@ -2,25 +2,27 @@
     <v-container>
         <ventana-emergente>
             <template v-slot:header>
-                <h3 class="text-center mt-10">Editar Perfil</h3>
+                <h3 class="text-center mt-8 titulo">Editar Perfil</h3>
             </template>
             <template v-slot:body>
                 <v-container>
-                    <v-table>
+                    <v-table style="padding-top: 30px;">
                         <thead>
                             <v-dialog v-model="mostrarVentana3"></v-dialog>
                             <tr class="col-md-3 offset-md-3">
-                                <td class="col-md-6"><v-text-field label="Nombre" type="input" v-model="trainerActual.nombre"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Nombre" type="input"
+                                        v-model="trainerActual.nombre"></v-text-field>
                                 </td>
                                 <td class="col-md-6"><v-text-field label="PhoneNumber" type="input"
                                         v-model="trainerActual.phoneNumber"></v-text-field></td>
                             </tr>
 
                             <tr>
-                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="date"
+                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="datetime-local"
                                         v-model="trainerActual.fechaNacimiento"></v-text-field>
                                 </td>
-                                <td class="col-md-6"><v-text-field label="Email" type="input" v-model="trainerActual.email"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Email" type="input"
+                                        v-model="trainerActual.email"></v-text-field>
                                 </td>
 
                             </tr>
@@ -32,10 +34,12 @@
             <template v-slot:footer>
                 <v-row class="row">
                     <v-col cols="6" class="text-right">
-                        <v-btn class="ma-2" variant="tonal" @click="editar(trainerActual.email)"> Añadir </v-btn>
+                        <v-btn class="ma-2" color="indigo" @click="editar(trainerActual.email)">
+                            <v-icon left>mdi-plus</v-icon>
+                            Añadir </v-btn>
                     </v-col>
                     <v-col cols="6" class="salir">
-                        <v-btn @click="emit('onClose')" color="error" class="ma-2"><v-icon
+                        <v-btn @click="emit('onClose')" color="red-accent-4" class="ma-2"><v-icon
                                 icon="mdi-exit-run" />Salir</v-btn>
                     </v-col>
                 </v-row>
@@ -52,34 +56,40 @@ import { Entrenador } from '@/interfaces/IEntrenador';
 import Swal from 'sweetalert2';
 import { EditarTrainer } from '@/services/entrenadorService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
-import moment from 'moment';
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const mostrarVentana3 = ref(false);
 const trainerActual = ref({} as Entrenador);
 store.CargaDatosIniciales();
 trainerActual.value = store.GettrainerSelecionado;
-console.log(trainerActual.value)
 const emit = defineEmits(['onClose']);
 
+const validarCamposYGuardar = () => {
+    if (
+        !trainerActual.value.nombre ||
+        !trainerActual.value.email ||
+        !trainerActual.value.phoneNumber ||
+        !trainerActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
 
 const editar = async (nom: string) => {
-
-    try {
-
-        if (trainerActual.value.email !== store.GetnutriSelecionado.email) {
-            const duplicadoEmail = store.getlistaNutricionistas.find(
-                (a) => a.email === trainerActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro nutricionista.",
-                });
-            }
-        }
+    
         try {
+            validarCamposYGuardar();
+            
+            await ChangeEmail(
+                trainerActual.value.email,
+                trainerActual.value.userId
+            );
             await EditarTrainer(
                 trainerActual.value.id,
                 trainerActual.value.nombre,
@@ -87,13 +97,13 @@ const editar = async (nom: string) => {
                 trainerActual.value.role,
                 trainerActual.value.phoneNumber,
                 trainerActual.value.fechaNacimiento);
-
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso.",
+                });
         }
-    } catch (error) {
-        console.log("Problemas en el formulario")
-    }
     Swal.fire({
         icon: "success",
         title: "Cambios aplicados",
@@ -105,12 +115,9 @@ const editar = async (nom: string) => {
 </script>
 
 <style scoped>
-h3 {
-    padding: 15px;
-}
-
 .row {
     align-items: center;
+    padding-bottom: 80px;
 }
 
 .text-right {
@@ -123,8 +130,7 @@ h3 {
     flex-direction: column;
 }
 
-.error {
-    border-color: #faa;
-    background-color: #ffeded;
+.titulo {
+    padding-left: 50px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1 class="title">Login in the page</h1>
+    <h1 class="title">Login</h1>
     <form class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
       <input v-model="userLogin.email" class="form-input" type="email" id="email" placeholder="Email" />
@@ -23,12 +23,11 @@ import { Loggeo } from '../../services/userService';
 import type { Login } from '../../interfaces/Users/ILogin'
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
-
 const router = useRouter();
 const store = userStore();
+store.CargaDatosIniciales();
 const userLogin = ref({} as Login);
 let error = ref(false);
-store.CargaDatosIniciales();
 
 async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
@@ -41,7 +40,6 @@ async function login() {
     )
     if (response.result) {
       store.autenticado = true;
-
       const cliente = store.getClienteEmail(userLogin.value.email);
       const trainer = store.getEntrenadorEmail(userLogin.value.email);
       const nutricionista = store.getNutricionistaEmail(userLogin.value.email);
@@ -147,10 +145,10 @@ async function login() {
 }
 
 .router-link:hover {
-  color: #996900;
+  color: #e35722;
 }
 .form-submit {
-  background: #ff8c00;
+  background: #e35722;
   border: none;
   color: white;
   margin-top: 3rem;

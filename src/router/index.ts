@@ -60,6 +60,21 @@ const routes = [
         component: () =>
           import("../views/ErrorPageView.vue"),
       },
+      {
+        path: "/misrutinas",
+        name: "Rutinas",
+        component: () => import("../views/RutinasView.vue"),
+      },
+      {
+        path: "/ejercicios",
+        name: "Ejercicios",
+        component: () => import("../views/EjerciciosView.vue"),
+      },
+      {
+        path: "/dietas",
+        name: "Dieta",
+        component: () => import("../views/DietasView.vue"),
+      },
     ]
   },
   {
@@ -68,6 +83,7 @@ const routes = [
     component: () =>
       import("../views/ErrorPageView.vue"),
   },
+
 ]
     const router = createRouter({
       history: createWebHistory(process.env.BASE_URL),

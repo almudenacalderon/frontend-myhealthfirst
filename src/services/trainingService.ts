@@ -1,3 +1,4 @@
+import { Exercise } from "@/interfaces/IExercise";
 import api from "./api"
 import { Training } from "@/interfaces/ITraining";
 
@@ -13,25 +14,22 @@ export async function ObtenerTraining(id: number): Promise<Training> {
 export async function TrainingPost(
     clientId: number,
     trainerId: number,
-    exercises: number[],
+    exercises: Exercise[],
     nombre?: string,
     comentarios?: string,
   ): Promise<number> {
-    const { data } = await api.post("Training",  {
-        clientId,
-        trainerId,
-        nombre,
+    const { data } = await api.post(`Training/${trainerId}/${clientId}`,  {
         exercises,
+        nombre,
         comentarios
     });
-    console.log(data)
     return data;
   }
 
 export async function EditarTraining(
   id: number,
   clientId: number,
-  exercises: number[],
+  exercises: Exercise[],
   nombre?: string,
   comentarios?: string,
 ): Promise<number> {

@@ -53,20 +53,7 @@ import smartphone from '@/images/smartphone.png';
 </script>
 
 <style lang="scss" scoped>
-/* Seccion rutinas videos */
-.rutinas {
-    padding-bottom: 5em;
-    background-color: #e4e4e4;
-    color: #32cad7;
-    padding-top: 3em;
-  }
-  .rutinas h1 {
-    font-weight: bold;
-  }
-  .rutinas .video {
-    max-width: 760px;
-    margin: 0 auto;
-  }
+
   /* Seccion App */
 .app {
     margin: 4em 0;
@@ -81,7 +68,7 @@ import smartphone from '@/images/smartphone.png';
   .app .content-app h1 {
     padding-bottom: 40px;
     font-weight: bold;
-    color: #32cad7;
+    color: #e35722;
   }
   .app .content-app p {
     font-size: 1.2rem;
@@ -108,14 +95,14 @@ import smartphone from '@/images/smartphone.png';
   }
   .contact-form h1 {
     padding: 2em 1px;
-    color: #32cad7;
+    color: #e35722;
     font-weight: bold;
   }
   .contact-form .right {
     max-width: 600px;
   }
   .contact-form .right .btn-secondary {
-    background: #32cad7;
+    background: #e35722;
     color: #000;
     border: 0;
   }

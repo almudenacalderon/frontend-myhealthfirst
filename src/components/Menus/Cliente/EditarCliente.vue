@@ -2,7 +2,7 @@
     <v-container>
         <ventana-emergente>
             <template v-slot:header>
-                <h3 class="text-center mt-10">Editar Perfil</h3>
+                <h3 class="text-center mt-5">Editar Perfil</h3>
             </template>
             <template v-slot:body>
                 <v-container>
@@ -25,7 +25,7 @@
                             </tr>
                             <tr>
                                 <td><v-text-field label="Fecha Nacimiento" type="datetime-local"
-                                       v-model="clienteActual.fechaNacimiento"></v-text-field></td>
+                                        v-model="clienteActual.fechaNacimiento"></v-text-field></td>
                                 <td><v-text-field label="Fecha Asignacion dieta" type="datetime-local"
                                         v-model="clienteActual.fecha_asignacion_dieta"></v-text-field></td>
                                 <td><v-text-field label="Fecha Asignacion entreno" type="datetime-local"
@@ -53,13 +53,14 @@
 
 <script setup lang="ts">
 //imports
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 import { Cliente } from '@/interfaces/ICliente';
 import Swal from 'sweetalert2';
 import { EditarCliente } from '@/services/clienteService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
 import moment from 'moment';
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const search = ref('');
@@ -67,28 +68,36 @@ const mostrarVentana = ref(false);
 const clienteActual = ref({} as Cliente);
 store.CargaDatosIniciales();
 clienteActual.value = store.GetclienteSelecionado;
-console.log(clienteActual.value.fechaNacimiento)
 const emit = defineEmits(['onClose']);
 
-const editar = async (nom: string) => {
+const validarCamposYGuardar = () => {
+    if (
+        !clienteActual.value.nombre ||
+        !clienteActual.value.email ||
+        !clienteActual.value.phoneNumber ||
+        !clienteActual.value.peso ||
+        !clienteActual.value.altura ||
+        !clienteActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
 
- 
-    try {
-       
-        if (clienteActual.value.email !== store.GetclienteSelecionado.email) {
-            const duplicadoEmail = store.getlistaClientes.find(
-                (a) => a.email === clienteActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro cliente.",
-                });
-            }
-        }
-
+const editar = async (nom: string) => {      
+    
         try {
+            validarCamposYGuardar();
+
+            await ChangeEmail(
+                    clienteActual.value.email,
+                    clienteActual.value.userId
+                );
+
             await EditarCliente(
                 clienteActual.value.id,
                 clienteActual.value.nombre,
@@ -104,18 +113,18 @@ const editar = async (nom: string) => {
                 clienteActual.value.nutricionistId);
 
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso.",
+                });
         }
-    } catch (error) {
-        console.log("Problemas en el formulario")
+        Swal.fire({
+                icon: "success",
+                title: "Cambios aplicados",
+                text: "Tu perfil ya está actualizado",
+            });
     }
-    Swal.fire({
-        icon: "success",
-        title: "Cambios aplicados",
-        text: "Tu perfil ya está actualizado",
-    });
-}
-
 
 </script>
 

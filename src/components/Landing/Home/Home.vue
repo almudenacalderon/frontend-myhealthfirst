@@ -3,10 +3,10 @@
   <div class="container">
     <div class="row">
       <div class="description">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenid@</h1>
         <p class="text-justify">
-          En FitChallenge apostamos por la salud, por ello ofrecemos fitness para todos
-          cuando y donde sea, mediante el deporte o la alimentación. ¿Te atreves a cambiar tu vida?
+          En My Health First apostamos por la salud, por ello ofrecemos a los mejores profesionales de 
+          la nutrición y el entrenamiento para llevarlo a cabo. ¿Te atreves a cambiar tu vida?
         </p>
          <router-link to="/register" class="router-link">¿No tienes cuenta?</router-link>   
          <router-link to="/login" class="router-link">¿Ya tienes cuenta?</router-link>  
@@ -40,7 +40,7 @@
     padding: 2em;
   }
   .home .description h1 {
-    color: #32cad7;
+    color: #e35722;
     font-weight: bold;
   }
   .home .description p {
@@ -49,18 +49,13 @@
     width: 50%;
     line-height: 1.5;
   }
-  .home .description button {
-    border: 1px solid #32cad7;
-    background: #32cad7;
-    color: #000;
-  }
   .router-link {
-  color: rgba(166, 165, 218, 0.9);
+  color: #e35722;
   text-decoration: none;
   font-size: 25px;
 }
 
 .router-link:hover {
-  color: #996900;
+  color: #e08778;
 }
 </style>

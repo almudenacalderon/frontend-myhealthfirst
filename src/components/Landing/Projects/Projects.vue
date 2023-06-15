@@ -45,12 +45,12 @@ import s2 from '@/images/servicio2.jpg';
     padding-top: 5em;
   }
   .servicios h1 {
-    color: #32cad7;
+    color: #e35722;
     font-weight: bold;
     padding-bottom: 2em;
   }
   .servicios h2 {
-    color: #32cad7;
+    color: #e35722;
   }
   .servicios h4 {
     padding-top: 0.2em;

@@ -10,17 +10,19 @@
                         <thead>
                             <v-dialog v-model="mostrarVentana2"></v-dialog>
                             <tr class="col-md-2 offset-md-2">
-                                <td class="col-md-6"><v-text-field label="Nombre" type="input" v-model="nutriActual.nombre"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Nombre" type="input"
+                                        v-model="nutriActual.nombre"></v-text-field>
                                 </td>
                                 <td class="col-md-6"><v-text-field label="PhoneNumber" type="input"
                                         v-model="nutriActual.phoneNumber"></v-text-field></td>
                             </tr>
 
                             <tr>
-                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="date"
+                                <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="datetime-local"
                                         v-model="nutriActual.fechaNacimiento"></v-text-field>
                                 </td>
-                                <td class="col-md-6"><v-text-field label="Email" type="input" v-model="nutriActual.email"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Email" type="input"
+                                        v-model="nutriActual.email"></v-text-field>
                                 </td>
 
                             </tr>
@@ -52,7 +54,7 @@ import { Nutricionista } from '@/interfaces/INutricionista';
 import Swal from 'sweetalert2';
 import { EditarNutricionist } from '@/services/nutricionistaService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
-import moment from 'moment';
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const mostrarVentana2 = ref(false);
@@ -62,38 +64,45 @@ nutriActual.value = store.GetnutriSelecionado;
 console.log(nutriActual.value)
 const emit = defineEmits(['onClose']);
 
+const validarCamposYGuardar = () => {
+    if (
+        !nutriActual.value.nombre ||
+        !nutriActual.value.email ||
+        !nutriActual.value.phoneNumber ||
+        !nutriActual.value.fechaNacimiento
+    ) {
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos requeridos.",
+        });
+        return;
+    }
+};
 
 const editar = async (nom: string) => {
-
-    try {
-
-        if (nutriActual.value.email !== store.GetnutriSelecionado.email) {
-            const duplicadoEmail = store.getlistaNutricionistas.find(
-                (a) => a.email === nutriActual.value.email
-            );
-            if (duplicadoEmail) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro nutricionista.",
-                });
-            }
-        }
         try {
+            validarCamposYGuardar();
+
+            await ChangeEmail(
+                nutriActual.value.email,
+                nutriActual.value.userId
+            );
             await EditarNutricionist(
                 nutriActual.value.id,
                 nutriActual.value.nombre,
                 nutriActual.value.email,
                 nutriActual.value.role,
                 nutriActual.value.phoneNumber,
-                nutriActual.value.fechaNacimiento);
-
+                nutriActual.value.fechaNacimiento);    
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Duplicado",
+                    text: "El correo electrónico ya está en uso por otro nutricionista.",
+                });
         }
-    } catch (error) {
-        console.log("Problemas en el formulario")
-    }
+  
     Swal.fire({
         icon: "success",
         title: "Cambios aplicados",

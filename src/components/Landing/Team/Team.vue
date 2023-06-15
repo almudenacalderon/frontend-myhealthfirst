@@ -1,35 +1,35 @@
 <template>
     <section class="team" id="team">
   <div class="container">
-    <h1 class="text-center">Equipo</h1>
+    <h1 class="text-center">Los mejores profesionales a tu disposición</h1>
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-12 item">
         <img :src=l1 class="img-fluid" alt="team" />
         <div class="des">
           Sara
         </div>
-        <span class="text-muted">Entrenadora</span>
+        <span>Entrenadora</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
         <img :src=l2 class="img-fluid" alt="team" />
         <div class="des">
           Chris
         </div>
-        <span class="text-muted">Nutricionista deportivo</span>
+        <span>Nutricionista deportivo</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
         <img :src=l1 class="img-fluid" alt="team" />
         <div class="des">
           Layla
         </div>
-        <span class="text-muted">Entrenadora de competición</span>
+        <span>Entrenadora de competición</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
         <img :src=l2 class="img-fluid" alt="team" />
         <div class="des">
           J.Jirard
         </div>
-        <span class="text-muted">Nutricionista clínico</span>
+        <span>Nutricionista clínico</span>
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@ import l2 from '@/images/team-3.jpg';
     position: relative;
   }
   .team h1 {
-    color: #32cad7;
+    color: #e35722;
     margin: 2em;
     font-weight: bold;
   }
@@ -61,7 +61,7 @@ import l2 from '@/images/team-3.jpg';
   }
   .team .item:hover .des {
     height: 100%;
-    background: #32cad7;
+    background: #e35722;
     position: absolute;
     width: 90%;
     padding: 5em;
@@ -70,8 +70,8 @@ import l2 from '@/images/team-3.jpg';
     border-top-right-radius: 0;
   }
   .team .des {
-    background: #32cad7;
-    color: rgb(98, 100, 101);
+    background: #e35722;
+    color: black;
     font-weight: bolder;
     text-align: center;
     border-top-right-radius: 93%;

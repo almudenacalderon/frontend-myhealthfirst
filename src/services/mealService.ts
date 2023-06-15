@@ -2,11 +2,11 @@ import api from "./api"
 import { Meal } from "@/interfaces/IMeal";
 
 
-export async function GetDiets(): Promise<Meal[]> {
+export async function GetMeals(): Promise<Meal[]> {
     const { data } = await api.get<Meal[]>("Meal");
     return data;
 }
-export async function ObtenerDieta(id: number): Promise<Meal> {
+export async function ObtenerMeal(id: number): Promise<Meal> {
     const { data } = await api.get<Meal>(`Meal/${id}`);
     return data;
 }
@@ -42,6 +42,7 @@ export async function MealPost(
 
 export async function EditarMeal(
     id: number,
+    dietId: number,
     nombre?: string,
     desayuno?: string,
     comida?: string,
@@ -54,6 +55,7 @@ export async function EditarMeal(
     comentarios?: string,
 ): Promise<number> {
     const { data } = await api.put(`Meal/${id}`, {
+        dietId,
         nombre,
         desayuno,
         comida,
