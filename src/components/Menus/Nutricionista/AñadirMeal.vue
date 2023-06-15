@@ -96,8 +96,16 @@
   const listaDietas = store.getlistaDietas.filter((dieta) => dieta.nutricionistId === nutriActual.value.id);
   
   const guardarMeal = async () => {
-    if (
-        !nuevaMeal.value.nombre ||
+    if(listaDietas.length===0) {
+    Swal.fire({
+      icon: "error",
+      title: "Error al guardar la alimentación diaria",
+      text: "Para agregar una alimentación diaria tienes que tener dietas para poder insertar estas comidas.",
+    });
+    return;
+  }
+  else if (
+    !nuevaMeal.value.nombre ||
     !nuevaMeal.value.dietId ||
     !nuevaMeal.value.comentarios ||
     !nuevaMeal.value.desayuno ||

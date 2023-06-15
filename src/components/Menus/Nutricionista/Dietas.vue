@@ -9,7 +9,7 @@
             </h2>
         </v-row>
         <v-table class="mt-7 card">
-            <thead>
+            <thead v-if="!listaDietasFiltradas">
                 <tr class="orange-header card-header">
                     <th class="font-weight-bold">Nombre</th>
                     <th class="font-weight-bold">Comidas</th>

@@ -25,11 +25,12 @@
 //imports
 import { ref } from 'vue';
 import { userStore } from '../../store/app';
-import router from '@/router';
+import { useRouter } from 'vue-router';
 
 //const
 const store = userStore();
 const colapsado = ref(false);
+const router = useRouter();
 
 function logout () {
   store.logoutUsuario();

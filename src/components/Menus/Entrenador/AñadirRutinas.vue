@@ -82,8 +82,15 @@ const errorSnackbar = ref(false);
 const listaClientes = store.getlistaClientes.filter((cliente) => cliente.trainerId === entrenadorActual.value.id);
 
 const validarCamposYGuardar = () => {
-
-  if (!rutinaActual.value.nombre || rutinaActual.value.exercises.length === 0 || !rutinaActual.value.comentarios || !rutinaActual.value.clientId) {
+  if(listaClientes.length===0) {
+    Swal.fire({
+      icon: "error",
+      title: "Error al guardar la rutina",
+      text: "Para agregar una rutina tienes que tener al menos un cliente asignado.",
+    });
+    return;
+  }
+  else if (!rutinaActual.value.nombre || rutinaActual.value.exercises.length === 0 || !rutinaActual.value.comentarios || !rutinaActual.value.clientId) {
 
     errorSnackbar.value = true;
     return;

@@ -67,7 +67,15 @@
   const listaClientes = store.getlistaClientes.filter((cliente) => cliente.nutricionistId === nutriActual.value.id);
   
   const guardarDieta = async () => {
-    if (!nuevaDieta.value.nombre || !nuevaDieta.value.clientId || !nuevaDieta.value.comentarios) {
+    if(listaClientes.length===0) {
+    Swal.fire({
+      icon: "error",
+      title: "Error al guardar la dieta",
+      text: "Para agregar una dieta tienes que tener al menos un cliente asignado.",
+    });
+    return;
+  }
+  else if (!nuevaDieta.value.nombre || !nuevaDieta.value.clientId || !nuevaDieta.value.comentarios) {
       Swal.fire({
         icon: "error",
         title: "Campos incompletos",

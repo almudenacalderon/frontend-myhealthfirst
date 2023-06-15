@@ -3,37 +3,38 @@
     <h1 class="title">Sign Up</h1>
     <form class="form" @submit.prevent="register">
       <label class="form-label" for="#name">Nombre:</label>
-      <input v-model="userRegistro.name" class="form-input" type="name" id="name" placeholder="Nombre" 
-      @input="validateName(userRegistro.name)"/>
+      <input v-model="userRegistro.name" class="form-input" type="name" id="name" placeholder="Nombre"
+        @input="validateName(userRegistro.name)" />
       <span class="error">{{ errors.name }}</span>
       <label class="form-label" for="#email">Email:</label>
-      <input v-model="userRegistro.emailAddress" class="form-input" type="email" id="email"
-        placeholder="Email" 
-        @input="validateEmail(userRegistro.emailAddress)" 
-        />
+      <input v-model="userRegistro.emailAddress" class="form-input" type="email" id="email" placeholder="Email"
+        @input="validateEmail(userRegistro.emailAddress)" />
       <span class="error">{{ errors.emailAddress }}</span>
       <label class="form-label" for="#password">Password:</label>
       <input v-model="userRegistro.password" class="form-input" type="password" id="password" placeholder="Password"
-       @input="validatePassword(userRegistro.password)" />
+        @input="validatePassword(userRegistro.password)" />
       <span class="error">{{ errors.password }}</span>
       <label class="form-label" for="#password-repeat">Repite la contraeña:</label>
-      <input v-model="passwordRepeat" class="form-input" type="password" id="password-repeat" placeholder="Password" 
-      @input="validatePasswordRepeat(passwordRepeat)" />
+      <input v-model="passwordRepeat" class="form-input" type="password" id="password-repeat" placeholder="Password"
+        @input="validatePasswordRepeat(passwordRepeat)" />
       <span v-if="errorP" class="error">{{ errorP }}</span>
       <label class="form-label">¿Qué tipo de usuario eres?</label>
       <div>
         <label class="title">
-          <input type="radio" v-model="userRegistro.role" value="Cliente" @change="validateRol(userRegistro.role)" /> Cliente
+          <input type="radio" v-model="userRegistro.role" value="Cliente" @change="validateRol(userRegistro.role)" />
+          Cliente
         </label>
       </div>
       <div>
         <label class="title">
-          <input type="radio" v-model="userRegistro.role" value="Entrenador" @change="validateRol(userRegistro.role)" /> Entrenador
+          <input type="radio" v-model="userRegistro.role" value="Entrenador" @change="validateRol(userRegistro.role)" />
+          Entrenador
         </label>
       </div>
       <div>
         <label class="title">
-          <input type="radio" v-model="userRegistro.role" value="Nutricionista" @change="validateRol(userRegistro.role)"/> Nutricionista
+          <input type="radio" v-model="userRegistro.role" value="Nutricionista"
+            @change="validateRol(userRegistro.role)" /> Nutricionista
         </label>
       </div>
       <span class="error">{{ errors.role }}</span>
@@ -49,9 +50,10 @@ import { ref } from 'vue';
 import { Registro } from '../../services/userService';
 import { userStore } from '@/store/app';
 import type { Register } from '../../interfaces/Users/IRegister'
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
+const router = useRouter();
 const store = userStore();
 const userRegistro = ref({} as Register);
 const passwordRepeat = ref('');
@@ -74,14 +76,14 @@ const validatePassword = (password: string) => {
     errors.value.password = ''; // No hay error, se borra el mensaje de error
   }
 };
-const validatePasswordRepeat = (passwordRepeat: string ) => {
+const validatePasswordRepeat = (passwordRepeat: string) => {
   errorP.value = '';
   if (!passwordRepeat) {
     errorP.value = 'Debes repetir la contraseña';
-  } else if  (userRegistro.value.password !== passwordRepeat) {
-      errorP.value = 'Las contraseñas no son las mismas';
-} else {
-    errorP.value= ''; // No hay error, se borra el mensaje de error
+  } else if (userRegistro.value.password !== passwordRepeat) {
+    errorP.value = 'Las contraseñas no son las mismas';
+  } else {
+    errorP.value = ''; // No hay error, se borra el mensaje de error
   }
 }
 const validateEmail = (emailAddress: string) => {
@@ -89,50 +91,59 @@ const validateEmail = (emailAddress: string) => {
     errors.value.emailAddress = 'El email es requerido';
   }
   else {
-    errors.value.emailAddress= '';
+    errors.value.emailAddress = '';
   }
-} 
+}
 const validateName = (name: string) => {
   if (!name) {
     errors.value.name = 'El nombre es requerido';
   }
   else {
-    errors.value.name= '';
+    errors.value.name = '';
   }
-} 
+}
 
 const validateRol = (role: string) => {
   if (!role) {
     errors.value.role = 'Debes seleccionar un rol';
   }
   else {
-    errors.value.role='';
+    errors.value.role = '';
   }
-} 
+}
 
 const register = () => {
 
-   if (!userRegistro.value.role) {
+  if (!userRegistro.value.role) {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Debes seleccionar un rol',
     })
     return;
-   }
- 
-     Registro(
-      userRegistro.value.name,
-      userRegistro.value.emailAddress,
-      userRegistro.value.password,
-      userRegistro.value.role)
+  }
 
-    userRegistro.value.name = '';
-    userRegistro.value.emailAddress = '';
-    userRegistro.value.password = '';
-    userRegistro.value.role = '';
-    store.CargaDatosIniciales();
-    router.push("/login");
+  Registro(
+    userRegistro.value.name,
+    userRegistro.value.emailAddress,
+    userRegistro.value.password,
+    userRegistro.value.role)
+
+  userRegistro.value.name = '';
+  userRegistro.value.emailAddress = '';
+  userRegistro.value.password = '';
+  userRegistro.value.role = '';
+ 
+  Swal.fire({
+  icon: "success",
+  title: "Usuario creado",
+  text: "Ya te has registrado",
+  timer: 2000,
+  timerProgressBar: true,
+  showConfirmButton: false 
+});
+
+   router.push("/login");
 }
 
 </script>
@@ -197,15 +208,16 @@ const register = () => {
     background: #d03d07;
   }
 }
+
 .router-link {
   color: rgba(166, 165, 218, 0.9);
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .router-link:hover {
-  color: #e35722; 
+  color: #e35722;
 }
+
 .error {
-      color: red;
-    }
-</style>
+  color: red;
+}</style>

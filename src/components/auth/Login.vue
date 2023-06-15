@@ -23,7 +23,6 @@ import { Loggeo } from '../../services/userService';
 import type { Login } from '../../interfaces/Users/ILogin'
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
-
 const router = useRouter();
 const store = userStore();
 store.CargaDatosIniciales();
