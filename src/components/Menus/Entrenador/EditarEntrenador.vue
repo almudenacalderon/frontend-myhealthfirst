@@ -10,7 +10,8 @@
                         <thead>
                             <v-dialog v-model="mostrarVentana3"></v-dialog>
                             <tr class="col-md-3 offset-md-3">
-                                <td class="col-md-6"><v-text-field label="Nombre" type="input" v-model="trainerActual.nombre"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Nombre" type="input"
+                                        v-model="trainerActual.nombre"></v-text-field>
                                 </td>
                                 <td class="col-md-6"><v-text-field label="PhoneNumber" type="input"
                                         v-model="trainerActual.phoneNumber"></v-text-field></td>
@@ -20,7 +21,8 @@
                                 <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="datetime-local"
                                         v-model="trainerActual.fechaNacimiento"></v-text-field>
                                 </td>
-                                <td class="col-md-6"><v-text-field label="Email" type="input" v-model="trainerActual.email"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Email" type="input"
+                                        v-model="trainerActual.email"></v-text-field>
                                 </td>
 
                             </tr>
@@ -32,7 +34,7 @@
             <template v-slot:footer>
                 <v-row class="row">
                     <v-col cols="6" class="text-right">
-                        <v-btn class="ma-2" color="indigo" @click="editar(trainerActual.email)"> 
+                        <v-btn class="ma-2" color="indigo" @click="editar(trainerActual.email)">
                             <v-icon left>mdi-plus</v-icon>
                             Añadir </v-btn>
                     </v-col>
@@ -54,6 +56,7 @@ import { Entrenador } from '@/interfaces/IEntrenador';
 import Swal from 'sweetalert2';
 import { EditarTrainer } from '@/services/entrenadorService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const mostrarVentana3 = ref(false);
@@ -87,6 +90,11 @@ const editar = async (nom: string) => {
                 trainerActual.value.role,
                 trainerActual.value.phoneNumber,
                 trainerActual.value.fechaNacimiento);
+                
+            await ChangeEmail(
+                trainerActual.value.email,
+                trainerActual.value.userId
+            );
 
         } catch (error) {
             console.log(error);
@@ -105,7 +113,6 @@ const editar = async (nom: string) => {
 </script>
 
 <style scoped>
-
 .row {
     align-items: center;
     padding-bottom: 80px;
@@ -120,7 +127,8 @@ const editar = async (nom: string) => {
     display: flex;
     flex-direction: column;
 }
+
 .titulo {
-  padding-left: 50px;
+    padding-left: 50px;
 }
 </style>

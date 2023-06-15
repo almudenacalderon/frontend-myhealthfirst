@@ -53,13 +53,14 @@
 
 <script setup lang="ts">
 //imports
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { userStore } from '../../../store/app';
 import { Cliente } from '@/interfaces/ICliente';
 import Swal from 'sweetalert2';
 import { EditarCliente } from '@/services/clienteService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
 import moment from 'moment';
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const search = ref('');
@@ -73,8 +74,6 @@ const editar = async (nom: string) => {
 
 
     try {
-
-        if (clienteActual.value.email !== store.GetclienteSelecionado.email) {
             const duplicadoEmail = store.getlistaClientes.find(
                 (a) => a.email === clienteActual.value.email
             );
@@ -84,9 +83,8 @@ const editar = async (nom: string) => {
                     title: "Duplicado",
                     text: "El correo electrónico ya está en uso por otro cliente.",
                 });
-            }
-        }
-
+                return;
+            } 
         try {
             await EditarCliente(
                 clienteActual.value.id,
@@ -101,6 +99,11 @@ const editar = async (nom: string) => {
                 clienteActual.value.fecha_asignacion_entrenamiento,
                 clienteActual.value.trainerId,
                 clienteActual.value.nutricionistId);
+
+                await ChangeEmail(
+                    clienteActual.value.email,
+                    clienteActual.value.userId
+                );
 
             Swal.fire({
                 icon: "success",

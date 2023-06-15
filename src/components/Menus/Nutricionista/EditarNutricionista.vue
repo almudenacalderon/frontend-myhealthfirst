@@ -10,7 +10,8 @@
                         <thead>
                             <v-dialog v-model="mostrarVentana2"></v-dialog>
                             <tr class="col-md-2 offset-md-2">
-                                <td class="col-md-6"><v-text-field label="Nombre" type="input" v-model="nutriActual.nombre"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Nombre" type="input"
+                                        v-model="nutriActual.nombre"></v-text-field>
                                 </td>
                                 <td class="col-md-6"><v-text-field label="PhoneNumber" type="input"
                                         v-model="nutriActual.phoneNumber"></v-text-field></td>
@@ -20,7 +21,8 @@
                                 <td class="col-md-6"><v-text-field label="Fecha Nacimiento" type="datetime-local"
                                         v-model="nutriActual.fechaNacimiento"></v-text-field>
                                 </td>
-                                <td class="col-md-6"><v-text-field label="Email" type="input" v-model="nutriActual.email"></v-text-field>
+                                <td class="col-md-6"><v-text-field label="Email" type="input"
+                                        v-model="nutriActual.email"></v-text-field>
                                 </td>
 
                             </tr>
@@ -52,6 +54,7 @@ import { Nutricionista } from '@/interfaces/INutricionista';
 import Swal from 'sweetalert2';
 import { EditarNutricionist } from '@/services/nutricionistaService';
 import VentanaEmergente from "@/components/VentanaEmergente.vue";
+import { ChangeEmail } from '@/services/userService';
 
 const store = userStore();
 const mostrarVentana2 = ref(false);
@@ -87,6 +90,10 @@ const editar = async (nom: string) => {
                 nutriActual.value.phoneNumber,
                 nutriActual.value.fechaNacimiento);
 
+            await ChangeEmail(
+                nutriActual.value.email,
+                nutriActual.value.userId
+            );
         } catch (error) {
             console.log(error);
         }

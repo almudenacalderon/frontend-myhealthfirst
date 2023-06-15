@@ -5,7 +5,7 @@ import api from "./api"
     emailAddress: string,
     password: string,
     role: string
-  ): Promise<number> {
+  ): Promise<LoginResponse> {
     const { data } = await api.post("Register",  {
         name,
         emailAddress,
@@ -27,4 +27,16 @@ import api from "./api"
     return data;
   }
     
-  
+  export async function ChangeEmail(
+    newEmail: string,
+    userId: string,
+  ): Promise<LoginResponse> {
+    const { data } = await api.post("ChangeEmail", {
+        newEmail,
+        userId
+
+    });
+    console.log(data)
+    return data;
+  }
+    

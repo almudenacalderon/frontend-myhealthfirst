@@ -131,7 +131,7 @@ const register = () => {
     userRegistro.value.emailAddress = '';
     userRegistro.value.password = '';
     userRegistro.value.role = '';
-
+    store.CargaDatosIniciales();
     router.push("/login");
 }
 

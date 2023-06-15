@@ -143,6 +143,7 @@ export const userStore = defineStore('auth', {
     obtenerClientes() {
       GetClientes().then((data) => {
         this.listaClientes = data;
+        console.log(this.listaClientes)
       });
     },
     obtenerEntrenadores() {

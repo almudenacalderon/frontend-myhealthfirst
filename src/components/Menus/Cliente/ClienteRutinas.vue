@@ -112,10 +112,6 @@ const listaRutinasFiltradas = computed(() => {
 </script>
 
 <style scoped>
-h3 {
-    padding: 15px;
-}
-
 .row {
     align-items: center;
 }

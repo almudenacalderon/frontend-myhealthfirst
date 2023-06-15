@@ -13,7 +13,7 @@
       {{ store.nutriActual ? "Bienvenid@ " + store.nutriActual : '' }}
    </v-toolbar-title>
 
-     <v-btn icon class="custom" v-if="store.autenticado" @click="logout" to="/">
+     <v-btn icon class="custom" v-if="store.autenticado" @click="logout()">
         <v-icon>mdi-logout</v-icon>
      </v-btn>
     
@@ -25,19 +25,16 @@
 //imports
 import { ref } from 'vue';
 import { userStore } from '../../store/app';
+import router from '@/router';
 
 //const
 const store = userStore();
 const colapsado = ref(false);
-const mostrarVentana = ref(false);
 
-const cerrar = function () {
-  mostrarVentana.value = !mostrarVentana.value;
-  console.log();
-}
-const logout = async () => {
+function logout () {
   store.logoutUsuario();
   console.log(store.usuarioAutentificado)
+  router.push('/');
 };
 </script>
 
