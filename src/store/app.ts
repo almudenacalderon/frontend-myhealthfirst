@@ -184,6 +184,7 @@ export const userStore = defineStore('auth', {
       this.obtenerDietas();
       this.obtenerRutinas();
       this.obtenerEjercicios();
+      this.obtenerMeals();
     },
     
   }
