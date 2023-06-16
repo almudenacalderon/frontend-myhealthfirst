@@ -27,7 +27,6 @@ import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 const router = useRouter();
 const store = userStore();
-store.CargaDatosIniciales();
 const userLogin = ref({} as Login);
 let error = ref(false);
 
@@ -35,6 +34,8 @@ async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
     error.value = true;
   }
+  store.CargaDatosIniciales();
+  console.log(store.obtenerClientes)
   try {
     const response = await Loggeo(
       userLogin.value.email,

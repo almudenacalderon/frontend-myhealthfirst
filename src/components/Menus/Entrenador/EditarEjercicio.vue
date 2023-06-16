@@ -100,9 +100,10 @@
           title: "Ejercicio editado",
           text: "Los cambios han sido guardados correctamente.",
         });
+        store.obtenerEjercicios();
       }
     });
-    store.obtenerEjercicios();
+   
   };
   </script>
   <style scoped>

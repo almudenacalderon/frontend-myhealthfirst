@@ -88,43 +88,60 @@ const validarCamposYGuardar = () => {
     }
 };
 
-const editar = async (nom: string) => {      
-    
-        try {
-            validarCamposYGuardar();
+const editar = async (nom: string) => {
+    Swal.fire({
+        icon: "warning",
+        title: "¿Estás seguro?",
+        text: "Esta acción guardará los cambios en tu perfil.",
+        showCancelButton: true,
+        confirmButtonText: "Sí, guardar",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: async () => {
+            try {
+                validarCamposYGuardar();
 
-            await ChangeEmail(
+                await ChangeEmail(
                     clienteActual.value.email,
                     clienteActual.value.userId
                 );
 
-            await EditarCliente(
-                clienteActual.value.id,
-                clienteActual.value.nombre,
-                clienteActual.value.email,
-                clienteActual.value.role,
-                clienteActual.value.phoneNumber,
-                clienteActual.value.peso,
-                clienteActual.value.altura,
-                clienteActual.value.fechaNacimiento,
-                clienteActual.value.fecha_asignacion_dieta,
-                clienteActual.value.fecha_asignacion_entrenamiento,
-                clienteActual.value.trainerId,
-                clienteActual.value.nutricionistId);
+                await EditarCliente(
+                    clienteActual.value.id,
+                    clienteActual.value.nombre,
+                    clienteActual.value.email,
+                    clienteActual.value.role,
+                    clienteActual.value.phoneNumber,
+                    clienteActual.value.peso,
+                    clienteActual.value.altura,
+                    clienteActual.value.fechaNacimiento,
+                    clienteActual.value.fecha_asignacion_dieta,
+                    clienteActual.value.fecha_asignacion_entrenamiento,
+                    clienteActual.value.trainerId,
+                    clienteActual.value.nutricionistId);
 
-        } catch (error) {
-            Swal.fire({
+                return true;
+
+            } catch (error) {
+                Swal.fire({
                     icon: "error",
                     title: "Duplicado",
-                    text: "El correo electrónico ya está en uso.",
+                    text: "El correo electrónico ya está en uso o hay un fallo en los datos.",
                 });
-        }
-        Swal.fire({
+                return false;
+            }
+        },
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire({
                 icon: "success",
                 title: "Cambios aplicados",
                 text: "Tu perfil ya está actualizado",
             });
-    }
+        }
+        store.obtenerClientes();
+    });
+}
 
 </script>
 

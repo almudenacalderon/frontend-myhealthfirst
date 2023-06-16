@@ -81,6 +81,15 @@ const validarCamposYGuardar = () => {
 };
 
 const editar = async (nom: string) => {
+    Swal.fire({
+        icon: "warning",
+        title: "¿Estás seguro?",
+        text: "Esta acción guardará los cambios en tu perfil.",
+        showCancelButton: true,
+        confirmButtonText: "Sí, guardar",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: async () => {
         try {
             validarCamposYGuardar();
 
@@ -95,18 +104,27 @@ const editar = async (nom: string) => {
                 nutriActual.value.role,
                 nutriActual.value.phoneNumber,
                 nutriActual.value.fechaNacimiento);    
+
+                return true;
+
         } catch (error) {
             Swal.fire({
                     icon: "error",
                     title: "Duplicado",
-                    text: "El correo electrónico ya está en uso por otro nutricionista.",
+                    text: "El correo electrónico ya está en uso por otro nutricionista o hay un fallo en los datos.",
                 });
+                return false;
+            }
+        },
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire({
+                icon: "success",
+                title: "Cambios aplicados",
+                text: "Tu perfil ya está actualizado",
+            });
         }
-  
-    Swal.fire({
-        icon: "success",
-        title: "Cambios aplicados",
-        text: "Tu perfil ya está actualizado",
+        store.obtenerNutricionistas();
     });
 }
 
