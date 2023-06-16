@@ -1,6 +1,8 @@
 <template>
   <div class="login">
-    <h1 class="title">Login</h1>
+    <h1 class="title">Login <v-btn variant="text" to="/" class="router-link">
+    <v-icon>mdi-home</v-icon>
+  </v-btn></h1>
     <form class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
       <input v-model="userLogin.email" class="form-input" type="email" id="email" placeholder="Email" />
@@ -25,7 +27,6 @@ import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 const router = useRouter();
 const store = userStore();
-store.CargaDatosIniciales();
 const userLogin = ref({} as Login);
 let error = ref(false);
 
@@ -33,6 +34,7 @@ async function login() {
   if (userLogin.value.password == "" || userLogin.value.email == "") {
     error.value = true;
   }
+  store.CargaDatosIniciales();
   try {
     const response = await Loggeo(
       userLogin.value.email,
@@ -101,6 +103,7 @@ async function login() {
 .title {
   text-align: center;
   color: white;
+  padding-left: 1.7em;
 }
 
 .form {

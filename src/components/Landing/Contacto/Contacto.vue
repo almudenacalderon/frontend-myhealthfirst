@@ -1,6 +1,5 @@
 <template>
- 
-  <div>
+ <div>
     <section class="app" id="app">
       <div class="container">
         <div class="row">
@@ -20,28 +19,28 @@
     </section>
 
     <section class="contact-form" id="contact">
-      <div class="container">
-        <form>
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <h1>Contacto</h1>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 right">
-              <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Tu nombre" />
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control form-control-lg" placeholder="tucorreo@gmail.com" />
-              </div>
-              <div class="form-group">
-                <textarea class="form-control form-control-lg"/>
-              </div>
-              <input type="submit" class="btn btn-secondary btn-block" defaultValue="Enviar" />
-            </div>
+  <div class="container">
+    <form>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <h1>Contacto</h1>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 right">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-lg" placeholder="Tu nombre" />
           </div>
-        </form>
+          <div class="form-group">
+            <input type="email" class="form-control form-control-lg" placeholder="tucorreo@gmail.com" />
+          </div>
+          <div class="form-group">
+            <textarea class="form-control form-control-lg" placeholder="Mensaje"></textarea>
+          </div>
+          <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" />
+        </div>
       </div>
-    </section>
+    </form>
+  </div>
+</section>
   </div>
  
 </template>
@@ -85,25 +84,56 @@ import smartphone from '@/images/smartphone.png';
   }
   
   /* Seccion Contacto */
-  .contact-form {
-    background-color: #e4e4e4;
-    padding-bottom: 8em;
-    background-color: #e4e4e4;
-    position: relative;
-    padding-top: 10em;
-    padding-left: 12em;
-  }
-  .contact-form h1 {
-    padding: 2em 1px;
-    color: #e35722;
-    font-weight: bold;
-  }
-  .contact-form .right {
-    max-width: 600px;
-  }
-  .contact-form .right .btn-secondary {
-    background: #e35722;
-    color: #000;
-    border: 0;
-  }
+.contact-form {
+  background-color: black;
+  padding-bottom: 4em;
+  position: relative;
+  padding-top: 7em;
+  padding-left: 12em;
+  
+}
+
+.contact-form h1 {
+  padding: 2em 1px;
+  color: #e35722;
+  font-weight: bold;
+  font-size: 2.3em;
+  text-transform: uppercase;
+}
+
+.contact-form .right {
+  max-width: 600px;
+}
+
+.contact-form .form-control {
+  background-color: #e4e4e4;
+  color: #333;
+  border-radius: 3px;
+  border: none;
+  padding: 1.5em;
+  margin-bottom: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.contact-form textarea {
+  height: 100px;
+}
+
+.contact-form .btn-primary {
+  background-color: #e35722;
+  color: black;
+  border: none;
+  font-size: 1.2em;
+  padding: 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.contact-form .btn-primary:hover {
+  background-color: #d8a482;
+  color: #e35722;
+}
+
 </style>

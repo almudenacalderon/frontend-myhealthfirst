@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import foto from '@/images/class2.png';
+import foto from '@/images/fitnes-couple.png';
 </script>
 
 <style lang="scss" scoped>

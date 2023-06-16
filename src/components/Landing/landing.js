@@ -8,7 +8,6 @@ import Pack from './Pack/pack';
 import Projects from './Projects/projects';
 
 const Landing = function() {
-    // JSX:
     return (
         <main>
             <Header></Header>

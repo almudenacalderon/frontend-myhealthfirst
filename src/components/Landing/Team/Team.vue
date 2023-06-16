@@ -11,21 +11,21 @@
         <span>Entrenadora</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
-        <img :src=l2 class="img-fluid" alt="team" />
+        <img :src=l3 class="img-fluid" alt="team" />
         <div class="des">
           Chris
         </div>
         <span>Nutricionista deportivo</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
-        <img :src=l1 class="img-fluid" alt="team" />
+        <img :src=l5 class="img-fluid" alt="team" />
         <div class="des">
           Layla
         </div>
         <span>Entrenadora de competición</span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 item">
-        <img :src=l2 class="img-fluid" alt="team" />
+        <img :src=l4 class="img-fluid" alt="team" />
         <div class="des">
           J.Jirard
         </div>
@@ -37,8 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import l1 from '@/images/team-2.jpg';
-import l2 from '@/images/team-3.jpg';
+import l1 from '@/images/profile-5.jpg';
+import l3 from '@/images/profile-2.jpg';
+import l4 from '@/images/profile-3.jpg';
+import l5 from '@/images/profile-6.jpg'
 </script>
 
 <style lang="scss" scoped>

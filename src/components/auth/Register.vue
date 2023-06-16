@@ -1,6 +1,9 @@
 <template>
   <div class="register">
-    <h1 class="title">Sign Up</h1>
+    <h1 class="title">Sign Up <v-btn variant="text" to="/" class="router-link">
+    <v-icon>mdi-home</v-icon>
+  </v-btn> </h1>
+
     <form class="form" @submit.prevent="register">
       <label class="form-label" for="#name">Nombre:</label>
       <input v-model="userRegistro.name" class="form-input" type="name" id="name" placeholder="Nombre"
@@ -156,6 +159,7 @@ const register = () => {
 .title {
   text-align: center;
   color: white;
+  padding-left: 1.7em;
 }
 
 .form {
