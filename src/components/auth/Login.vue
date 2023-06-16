@@ -35,7 +35,6 @@ async function login() {
     error.value = true;
   }
   store.CargaDatosIniciales();
-  console.log(store.obtenerClientes)
   try {
     const response = await Loggeo(
       userLogin.value.email,
